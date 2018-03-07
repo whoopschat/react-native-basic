@@ -1,5 +1,5 @@
 import {AppRegistry} from 'react-native';
-import Root from './src/Root';
 import './src/common/global';
+import Root from './src/Root';
 
 AppRegistry.registerComponent('ReactApp', () => Root);

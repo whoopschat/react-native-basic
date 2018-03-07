@@ -15,7 +15,7 @@ export default class FadeInView extends Component {
             this.state.fadeAnim,                      // 动画中的变量值
             {
                 toValue: 1,                             // 透明度最终变为1，即完全不透明
-                duration: 2000,
+                duration: 500,
             }
         ).start();                                  // 开始执行动画
     }

@@ -1,23 +1,23 @@
-import React, {Component} from "react";
+import React from "react";
 import {Button, Text, View} from 'react-native'
+import {RouteName} from "../../routers";
 
-export default class HomeScreen extends Component {
+export default class HomeScreen extends RouteScreen {
 
-    render() {
-        const {navigate} = this.props.navigation;
-        return (
-            <View>
-                <Text>Demo HOME</Text>
-                <Button
-                    onPress={() => {
-                        navigate('Navigation', {name: 'this page is from Home1'});
-                    }}
-                    title="Navigation Page"
-                    color="#841584"
-                    accessibilityLabel="Ok, Great!"
-                />
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View>
+        <Text>Demo HOME</Text>
+        <Button
+          onPress={() => {
+            this.push(RouteName.Navigation, {name: 'this page is from Home1'});
+          }}
+          title="Navigation Page"
+          color="#841584"
+          accessibilityLabel="Ok, Great!"
+        />
+      </View>
+    );
+  }
 
 }

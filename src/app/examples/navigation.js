@@ -1,23 +1,21 @@
-import React, {Component} from "react";
+import React from "react";
 import {Button, Text, View} from 'react-native'
 
-export default class NavigationScreen extends Component {
+export default class NavigationScreen extends RouteScreen {
 
-    render() {
-        const {navigate} = this.props.navigation;
-        const params = this.props.navigation.state.params || {};
-        return (
-            <View>
-                <Text>{params.name || "NavigationScreen"}</Text>
-                <Button
-                    onPress={() =>
-                        navigate('Home')
-                    }
-                    title="Home Page"
-                    color="#841584"
-                />
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View>
+        <Text>{this.params.name || "NavigationScreen"}</Text>
+        <Button
+          onPress={() =>
+            this.back()
+          }
+          title="Home Page"
+          color="#841584"
+        />
+      </View>
+    );
+  }
 
 }

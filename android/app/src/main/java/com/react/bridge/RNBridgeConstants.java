@@ -7,5 +7,6 @@ public interface RNBridgeConstants {
 
     String MODULE_NAME = "RNBridgeModule";
     String MODULE_READY = "RNBridgeReady";
+    String MODULE_EMIT_EVENT = "RNBridgeEvent";
 
 }

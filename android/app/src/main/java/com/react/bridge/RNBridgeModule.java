@@ -44,14 +44,15 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
     }
 
     public static void postSticky(String type, Map<String, Object> data) {
+        if (data == null) {
+            data = new HashMap<>();
+        }
         Event event = new Event(type, data);
         STICKY_EVENTS.put(type, event);
-        for (WeakReference<RNBridgeModule> ref : INSTANCES) {
-            RNBridgeModule module = ref.get();
+        for (int i = 0; i < INSTANCES.size(); i++) {
+            RNBridgeModule module = INSTANCES.get(i).get();
             if (module != null) {
                 module.handleStickySendNativeEvent(event);
-            } else {
-                INSTANCES.remove(ref);
             }
         }
     }
@@ -63,8 +64,6 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
             if (module != null) {
                 // compose params
                 module.handlePendingSendNativeEventWith(event);
-            } else {
-                INSTANCES.remove(ref);
             }
         }
     }
@@ -92,7 +91,7 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
         }
         RNBridgeHandler handler = HANDLERS.get(type);
         if (handler != null) {
-            handler.handle(getCurrentActivity(), type, data.toHashMap(), new PromiseProxy(promise));
+            handler.handle(getCurrentActivity(), type, data == null ? new HashMap<String, Object>() : data.toHashMap(), new PromiseProxy(promise));
         } else {
             promise.resolve(null);
         }
@@ -105,7 +104,7 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
         // send event by device event emitter
         this.getReactApplicationContext()
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                .emit("NativeEvent", event.toWritableMap());
+                .emit(RNBridgeConstants.MODULE_EMIT_EVENT, event.toWritableMap());
     }
 
     private void handlePendingSendNativeEventWith(Event event) {
