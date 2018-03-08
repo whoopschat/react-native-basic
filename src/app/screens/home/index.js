@@ -6,7 +6,7 @@ const jumpAction = (action) => {
   action.router.navigate(RouteName.Center);
 };
 
-export default class HomeScreen extends RouteScreen {
+export default class HomeScreen extends RouterScreen {
 
   render() {
     return (
@@ -14,7 +14,7 @@ export default class HomeScreen extends RouteScreen {
         <Text>Demo HOME {this.router.getParam("name", "MyName")}</Text>
         <Button
           onPress={() => {
-            this.action(jumpAction);
+            this.router.action(jumpAction);
           }}
           title="Navigation Page"
           color="#841584"

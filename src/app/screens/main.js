@@ -18,7 +18,7 @@ const MainNavigator = TabNavigator({
   },
 }, {
   tabBarPosition: 'bottom',
-  lazy: true,
+  lazy: false,
   initialRouteName: 'Home',
   tabBarOptions: {
     showIcon: true,

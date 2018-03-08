@@ -2,37 +2,33 @@ import React, {Component} from 'react';
 import {Button, Text, View} from 'react-native';
 import {demoGetApi} from "../../apis/demo";
 
-const onButtonPress = () => {
-  Bridge.send("login", null);
-  demoGetApi().then((responseJson) => {
-    alert(JSON.stringify(responseJson));
-    return responseJson;
-  }).catch((error) => {
-    alert(JSON.stringify(error));
-  });
-};
-
-export default class App extends Component {
+export default class MeScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      value: ""
-    };
+      value: "MeScreen"
+    }
+    this.page = applyRouter(this);
   }
 
   render() {
     return (
       <View>
-        <Text>{Lang.lang("你好")}</Text>
+        <Text>{this.state.value}</Text>
         <Button
-          onPress={onButtonPress}
-          title="Ok!"
-          color="#841584"
-          accessibilityLabel="Ok, Great!"
-        />
-      </View>
-    );
-  }
-
-}
+          onPress={() => {
+            this.page.action(action => {
+              return {
+                value:"New Text"
+              }
+            })
+          }}
+            title="Ok!"
+            color="#841584"
+            accessibilityLabel="Ok, Great!"
+            />
+            </View>
+            );
+          }
+        }

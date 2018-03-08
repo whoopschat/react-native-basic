@@ -1,12 +1,12 @@
 import React from "react";
 import {Button, Text, View} from 'react-native'
 
-export default class NavigationScreen extends RouteScreen {
+export default class NavigationScreen extends RouterScreen {
 
   render() {
     return (
       <View>
-        <Text>Name : {this.router.getParam("name", "NavigationScreen")} </Text>
+        <Text>Name : {this.router.getParam("name", "NavigationScreen")}</Text>
         <Button
           onPress={() =>
             this.router.setParams({name: "New Name"})
