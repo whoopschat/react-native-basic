@@ -6,7 +6,7 @@ export default class NavigationScreen extends RouteScreen {
   render() {
     return (
       <View>
-        <Text>Name : {this.router.getParam("name", "default name")}</Text>
+        <Text>Name : {this.router.getParam("name", "NavigationScreen")} </Text>
         <Button
           onPress={() =>
             this.router.setParams({name: "New Name"})
@@ -14,7 +14,7 @@ export default class NavigationScreen extends RouteScreen {
           title="Change Name"
           color="#841584"
         />
-        <Text>age : {this.router.getParam("age", "50")}</Text>
+        <Text>age : {this.router.getParam("age", "100")}</Text>
         <Button
           onPress={() =>
             this.router.setParams({age: 69})
@@ -27,7 +27,7 @@ export default class NavigationScreen extends RouteScreen {
           onPress={() =>
             this.router.popToTop()
           }
-          title="Home Page"
+          title="POP TO TOP"
           color="#841584"
         />
       </View>

@@ -2,6 +2,10 @@ import React from "react";
 import {Button, Text, View} from 'react-native'
 import {RouteName} from "../../routers";
 
+const jumpAction = (action) => {
+  action.router.navigate(RouteName.Center);
+};
+
 export default class HomeScreen extends RouteScreen {
 
   render() {
@@ -10,7 +14,7 @@ export default class HomeScreen extends RouteScreen {
         <Text>Demo HOME {this.router.getParam("name", "MyName")}</Text>
         <Button
           onPress={() => {
-            this.router.push(RouteName.Center, {name: 'this page is from Home1'});
+            this.action(jumpAction);
           }}
           title="Navigation Page"
           color="#841584"
@@ -21,3 +25,4 @@ export default class HomeScreen extends RouteScreen {
   }
 
 }
+

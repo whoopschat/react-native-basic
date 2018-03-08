@@ -10,7 +10,7 @@ export default class CenterScreen extends RouteScreen {
         <Text>{this.router.getParam("name", "default name")}</Text>
         <Button
           onPress={() =>
-            this.router.push(RouteName.Navigation,{name:'callback'})
+            this.router.navigate(RouteName.Navigation,{name:'callback'})
           }
           title="Home Page"
           color="#841584"

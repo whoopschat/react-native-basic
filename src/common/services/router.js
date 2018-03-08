@@ -1,11 +1,13 @@
+'use strict';
+
 import React from 'react';
 
 class RouteScreen extends React.Component {
 
-
   constructor(props) {
     super(props);
     const screen = this;
+    this.state = {};
     this.router = {
       dispatch(action) {
         if (screen.props.hasOwnProperty('navigation') && screen.props.navigation.hasOwnProperty('dispatch')) {
@@ -65,10 +67,34 @@ class RouteScreen extends React.Component {
         if (screen.props.hasOwnProperty('navigation')
           && screen.props.navigation.hasOwnProperty('setParams')) {
           const {setParams} = screen.props.navigation;
-          return setParams(params);
+          setParams(params);
+        }
+      },
+      isFocused() {
+        if (screen.props.hasOwnProperty('navigation')
+          && screen.props.navigation.hasOwnProperty('isFocused')) {
+          const {isFocused} = screen.props.navigation;
+          return isFocused();
+        }
+      },
+      addListener(type, payload) {
+        if (screen.props.hasOwnProperty('navigation')
+          && screen.props.navigation.hasOwnProperty('addListener')) {
+          const {addListener} = screen.props.navigation;
+          return addListener(type, payload);
         }
       }
     };
+  }
+
+  action(action) {
+    const state = action({
+      state: this.state,
+      router: this.router,
+      props: this.props,
+      action: this.action.bind(this)
+    });
+    this.setState(state || {});
   }
 
 }
