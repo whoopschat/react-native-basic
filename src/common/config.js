@@ -19,7 +19,7 @@ const config = {
     LOG_LEVEL: isProd ? 'ERROR' : 'INFO',
 
     // API server time out
-    API_TIMEOUT: 30000,
+    API_TIMEOUT: 10000,
 
     // API request common headers
     API_HEADERS: {

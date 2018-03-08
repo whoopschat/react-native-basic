@@ -1,6 +1,6 @@
 'use strict';
 
-const fetch_timeout = 30000;
+const fetch_timeout = 10000;
 
 const paramBody = (params) => {
     let queryString = Object
