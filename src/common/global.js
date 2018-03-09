@@ -6,14 +6,16 @@ import Lang from './services/lang';
 import Logger from './services/logger';
 import Screen from "./services/screen";
 import Store from './services/store';
+import Resources from "./services/resources";
 import Bridge from './modules/bridge';
 
 global.ScreenComponent = Screen.ScreenComponent;
 global.Config = Config;
 global.Logger = Logger;
 global.Lang = Lang;
-global.Bridge = Bridge;
+global.Resources = Resources;
 global.Store = {
   configureStore: Store.configureStore,
   connectState: Store.connectState
 };
+global.Bridge = Bridge;

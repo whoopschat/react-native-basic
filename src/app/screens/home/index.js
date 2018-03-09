@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Text, View} from 'react-native'
+import {Button, Image, Text, View} from 'react-native'
 import {RouteName} from "../../routers";
 
 const jumpAction = (action) => {
@@ -7,11 +7,13 @@ const jumpAction = (action) => {
 };
 
 class HomeScreen extends ScreenComponent {
+
   render() {
     return (
       <View>
         <Text>HomeScreen
           -> {this.navigator.getParam("name", "MyName")} {this.props.login.status || "------------------"}</Text>
+        <Image source={Resources.assets.watermark} />
         <Button
           onPress={() => {
             this.dispatchAction(jumpAction)
