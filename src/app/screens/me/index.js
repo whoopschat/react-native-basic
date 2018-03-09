@@ -1,15 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Button, Text, View} from 'react-native';
-import {demoGetApi} from "../../apis/demo";
 
-export default class MeScreen extends Component {
+export default class MeScreen extends ScreenComponent {
 
   constructor(props) {
     super(props);
     this.state = {
       value: "MeScreen"
     }
-    this.page = applyRouter(this);
   }
 
   render() {
@@ -18,17 +16,17 @@ export default class MeScreen extends Component {
         <Text>{this.state.value}</Text>
         <Button
           onPress={() => {
-            this.page.action(action => {
+            this.dispatchAction(action => {
               return {
-                value:"New Text"
+                value: "New Text"
               }
             })
           }}
-            title="Ok!"
-            color="#841584"
-            accessibilityLabel="Ok, Great!"
-            />
-            </View>
-            );
-          }
-        }
+          title="Ok!"
+          color="#841584"
+          accessibilityLabel="Ok, Great!"
+        />
+      </View>
+    );
+  }
+}

@@ -1,16 +1,24 @@
 import React from "react";
 import {Button, Text, View} from 'react-native'
 import {RouteName} from "../routers";
+import *as loginAction from "../redux/actions/login";
 
-export default class CenterScreen extends RouterScreen {
+
+const buttonAction = (that) => {
+  that.props.dispatch(loginAction.login());
+  that.navigator.navigate(RouteName.Navigation, {name: 'callback'})
+};
+
+class CenterScreen extends ScreenComponent {
 
   render() {
     return (
       <View>
-        <Text>{this.router.getParam("name", "CenterScreen")}</Text>
+        <Text>{this.navigator.getParam("name", "CenterScreen")} {this.props.login.status || "------------------"}</Text>
         <Button
-          onPress={() =>
-            this.router.navigate(RouteName.Navigation, {name: 'callback'})
+          onPress={() => {
+            this.dispatchAction(buttonAction)
+          }
           }
           title="Home Page"
           color="#841584"
@@ -18,5 +26,6 @@ export default class CenterScreen extends RouterScreen {
       </View>
     );
   }
-
 }
+
+export default Store.connectState(CenterScreen)

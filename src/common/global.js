@@ -1,17 +1,19 @@
 'use strict';
 
-import "./services/proto";
+import "./services/prototype";
 import Config from './config'
 import Lang from './services/lang';
-import Log from './services/log';
-import Router from "./services/router";
-import Store from "./services/store";
+import Logger from './services/logger';
+import Screen from "./services/screen";
+import Store from './services/store';
 import Bridge from './modules/bridge';
 
-global.applyRouter = Router.applyRouter;
-global.RouterScreen = Router.Screen;
+global.ScreenComponent = Screen.ScreenComponent;
 global.Config = Config;
-global.Log = Log;
+global.Logger = Logger;
 global.Lang = Lang;
-global.Store = Store;
 global.Bridge = Bridge;
+global.Store = {
+  configureStore: Store.configureStore,
+  connectState: Store.connectState
+};

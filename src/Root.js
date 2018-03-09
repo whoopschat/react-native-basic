@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import Router from './app/routers';
+import {Provider} from 'react-redux';
+import Reducers from './app/reducers';
+import Routers from './app/routers';
 
 export default class Root extends Component {
   render() {
     return (
-      <Router/>
+      <Provider store={Store.configureStore(Reducers)}>
+        <Routers/>
+      </Provider>
     )
   }
 }

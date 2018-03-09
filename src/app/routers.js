@@ -5,12 +5,14 @@ import NavigationScreen from "./examples/navigation";
 import MainScreen from "./screens/main";
 import CenterScreen from "./examples/center";
 
+// RouteName
 export const RouteName = Object.freeze({
   Main: 'Main',
   Navigation: 'Navigation',
   Center: 'Center',
 });
 
+// RouteMap
 export const RouteMap = {
   [RouteName.Main]: {
     screen: MainScreen,
@@ -32,6 +34,7 @@ export const RouteMap = {
   }
 };
 
+// RouteConfigMap
 export const RouteConfigMap = {
   initialRouteName: RouteName.Main,
 };

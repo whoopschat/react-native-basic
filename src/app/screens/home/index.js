@@ -3,18 +3,18 @@ import {Button, Text, View} from 'react-native'
 import {RouteName} from "../../routers";
 
 const jumpAction = (action) => {
-  action.router.navigate(RouteName.Center);
+  action.navigator.navigate(RouteName.Center);
 };
 
-export default class HomeScreen extends RouterScreen {
-
+class HomeScreen extends ScreenComponent {
   render() {
     return (
       <View>
-        <Text>Demo HOME {this.router.getParam("name", "MyName")}</Text>
+        <Text>HomeScreen
+          -> {this.navigator.getParam("name", "MyName")} {this.props.login.status || "------------------"}</Text>
         <Button
           onPress={() => {
-            this.router.action(jumpAction);
+            this.dispatchAction(jumpAction)
           }}
           title="Navigation Page"
           color="#841584"
@@ -23,6 +23,7 @@ export default class HomeScreen extends RouterScreen {
       </View>
     );
   }
-
 }
+
+export default HomeScreen.connect()
 
