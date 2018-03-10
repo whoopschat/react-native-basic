@@ -19,6 +19,7 @@ class ScreenComponent extends React.Component {
       state: this.state,
       props: this.props,
       navigator: this.navigator,
+      dispatch: this.props.dispatch,
       dispatchAction: this.dispatchAction.bind(this)
     });
     if (state !== undefined) {

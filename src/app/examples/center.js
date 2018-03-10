@@ -5,7 +5,7 @@ import *as loginAction from '../redux/actions/login';
 
 
 const buttonAction = (that) => {
-  that.props.dispatch(loginAction.login());
+  that.dispatch(loginAction.login());
   that.navigator.navigate(RouteName.Navigation, {name: 'callback'})
 };
 
