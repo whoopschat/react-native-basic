@@ -25,6 +25,7 @@ class HomeScreen extends ScreenComponent {
       </View>
     );
   }
+
 }
 
 export default HomeScreen.connect()
