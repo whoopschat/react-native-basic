@@ -1,5 +1,5 @@
 'use strict';
 
 export default {
-    NAME: 'EN'
+  NAME: 'EN'
 }

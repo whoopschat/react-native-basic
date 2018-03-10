@@ -11,7 +11,7 @@ class HomeScreen extends ScreenComponent {
   render() {
     return (
       <View>
-        <Text>HomeScreen
+        <Text>HomeScreen {Lang.lang("你好")}
           -> {this.navigator.getParam("name", "MyName")} {this.props.login.status || "------------------"}</Text>
         <Image source={Resources.assets.watermark} />
         <Button
