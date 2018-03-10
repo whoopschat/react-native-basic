@@ -1,3 +1,4 @@
+import './common/global';
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import Reducers from './app/reducers';

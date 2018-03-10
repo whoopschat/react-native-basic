@@ -7,14 +7,18 @@ import *as loginAction from '../redux/actions/login';
 const buttonAction = (that) => {
   that.dispatch(loginAction.login());
   that.navigator.navigate(RouteName.Navigation, {name: 'callback'})
+  return{
+    name:" -------------- "
+  }
 };
 
 class CenterScreen extends ScreenComponent {
 
+
   render() {
     return (
       <View>
-        <Text>{this.navigator.getParam('name', 'CenterScreen')} {this.props.login.status || '------------------'}</Text>
+        <Text>{this.navigator.getParam('name', 'CenterScreen')} {JSON.stringify(this.state) || ""} {this.props.login.status || '------------------'} {this.props.demo.status || '------------------'}</Text>
         <Button
           onPress={() => {
             this.dispatchAction(buttonAction)
@@ -28,4 +32,4 @@ class CenterScreen extends ScreenComponent {
   }
 }
 
-export default Store.connectState(CenterScreen)
+export default CenterScreen.connect()

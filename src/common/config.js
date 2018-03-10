@@ -12,9 +12,6 @@ const config = {
     // device id, used in API report
     DEVICE_ID: 'unknown',
 
-    // locales
-    LOCALES: 'zh',
-
     // log level: { error, warn, info }
     LOG_LEVEL: isProd ? 'ERROR' : 'INFO',
 
