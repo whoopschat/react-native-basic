@@ -6,7 +6,7 @@ export default class MeScreen extends ScreenComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: "MeScreen"
+      value: 'MeScreen'
     }
   }
 
@@ -18,11 +18,11 @@ export default class MeScreen extends ScreenComponent {
           onPress={() => {
             this.dispatchAction(action => {
               return {
-                value: "New Text"
+                value: 'New Text'
               }
             })
           }}
-          title="Ok!"
+          title='Ok!'
           color="#841584"
           accessibilityLabel="Ok, Great!"
         />

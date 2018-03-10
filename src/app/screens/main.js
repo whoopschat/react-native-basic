@@ -1,7 +1,7 @@
-import {TabNavigator} from "react-navigation";
+import {TabNavigator} from 'react-navigation';
 
-import HomeScreen from "../screens/home";
-import MeScreen from "../screens/me";
+import HomeScreen from '../screens/home';
+import MeScreen from '../screens/me';
 
 const MainNavigator = TabNavigator({
   Home: {

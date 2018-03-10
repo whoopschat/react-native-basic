@@ -15,6 +15,6 @@ const BridgeProxy = {
     },
 };
 
-BridgeProxy.send("RNBridgeReady");
+BridgeProxy.send('RNBridgeReady');
 
 export default BridgeProxy;

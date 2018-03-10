@@ -1,12 +1,12 @@
 'use strict';
 
-import "./services/prototype";
+import './services/prototype';
 import Config from './config'
 import Languages from './resources/languages';
 import Logger from './services/logger';
-import Screen from "./services/screen";
+import Screen from './services/screen';
 import Store from './services/store';
-import Resources from "./resources/resources";
+import Resources from './resources/resources';
 import Bridge from './modules/bridge';
 
 global.ScreenComponent = Screen.ScreenComponent;
