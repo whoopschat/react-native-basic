@@ -17,11 +17,15 @@ export default class MeScreen extends BaseComponent {
         <Text>{this.state.value}</Text>
         <Button
           onPress={() => {
-            this.dispatchAction(action => {
-              demoGetApi().then(data => {
-                action.dispatchAction(a => ({value:JSON.stringify(data)}))
-              });
-            })
+            demoGetApi().then(data => {
+              this.invalidate({
+                value: JSON.stringify(data)
+              })
+            }).catch(e => {
+              this.invalidate({
+                value: JSON.stringify(e)
+              })
+            });
           }}
           title='Ok!'
           color="#841584"

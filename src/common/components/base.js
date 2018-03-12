@@ -24,7 +24,7 @@ export default class BaseComponent extends React.Component {
   }
 
   invalidate(state = {}, callback) {
-    this.setState({}, callback);
+    this.setState(state || {}, callback);
   }
 
 }

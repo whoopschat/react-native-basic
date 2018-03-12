@@ -16,6 +16,9 @@ export const RouteName = Object.freeze({
 export const RouteMap = {
   [RouteName.Main]: {
     screen: MainScreen,
+    navigationOptions: {
+      header: null
+    }
   },
   [RouteName.Center]: {
     screen: CenterScreen,

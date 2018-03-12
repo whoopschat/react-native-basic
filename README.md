@@ -7,7 +7,7 @@ a react native client basic
     - `vscode` + Extensions: `EditorConfig`, `ESLint`, `React Native Tools`
     - `React Native Debugger`
 * make sure `node` is installed, node v9.5.0 is tested, use [n](https://github.com/tj/n) to manage node version
-* run `npm install` to install dependencies
+* run `npm install` or `yarn install` to install dependencies
 * run `npm run ios` to start debug with iOS Simulator
 * start Android emulator and run `npm run android` to start debug with android emulator
 * run `npm run test` for basic test
