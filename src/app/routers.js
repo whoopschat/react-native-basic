@@ -1,9 +1,9 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation';
 // screens
-import NavigationScreen from './examples/navigation';
+import NavigationScreen from './screens/examples/navigation';
 import MainScreen from './screens/main';
-import CenterScreen from './examples/center';
+import CenterScreen from './screens/examples/center';
 
 // RouteName
 export const RouteName = Object.freeze({

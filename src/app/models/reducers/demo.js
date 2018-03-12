@@ -1,6 +1,6 @@
 'use strict';
 
-import {LOGIN_IN_DOING, LOGIN_IN_DONE, LOGIN_IN_ERROR} from '../types/login';
+import {LOGIN_IN_DOING, LOGIN_IN_DONE, LOGIN_IN_ERROR} from '../constants/login';
 
 const initialState = {
   status: '点击登录',

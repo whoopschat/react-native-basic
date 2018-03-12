@@ -1,6 +1,6 @@
 'use strict';
 
-import {getAPI, postAPI} from '../../common/services/api';
+import {getAPI, postAPI} from '../../../common/services/api';
 
 export const demoPostApi = () => {
     return postAPI('/api/index.php', {

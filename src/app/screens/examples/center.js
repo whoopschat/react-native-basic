@@ -1,11 +1,11 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native'
-import {RouteName} from '../routers';
-import *as loginAction from '../redux/actions/login';
+import {RouteName} from '../../routers';
+import {login} from "../../models/actions/login";
 
 
 const buttonAction = (that) => {
-  that.dispatch(loginAction.login());
+  that.dispatch(login());
   that.router.navigate(RouteName.Navigation, {name: 'callback'})
   return {
     name: " -------------- "
@@ -21,7 +21,8 @@ class CenterScreen extends BaseComponent {
         <Text>{this.router.getParam('name', 'CenterScreen')} {JSON.stringify(this.state) || ""} {this.props.login.status || '------------------'} {this.props.demo.status || '------------------'}</Text>
         <Button
           onPress={() => {
-            this.dispatchAction(buttonAction)
+            this.dispatch(login());
+            this.router.navigate(RouteName.Navigation, {name: 'callback'})
           }
           }
           title='Home Page'

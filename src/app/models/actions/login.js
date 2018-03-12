@@ -1,6 +1,6 @@
 'use strict';
 // 模拟用户信息
-import {LOGIN_IN_DOING, LOGIN_IN_DONE, LOGIN_IN_ERROR} from '../types/login';
+import {LOGIN_IN_DOING, LOGIN_IN_DONE, LOGIN_IN_ERROR} from '../constants/login';
 
 let user = {
   name: 'zhangsan',

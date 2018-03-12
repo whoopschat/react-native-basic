@@ -1,6 +1,7 @@
 package com.react.bridge;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
@@ -95,6 +96,8 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
         } else {
             promise.resolve(null);
         }
+        View v;
+        v.invalidate();
     }
 
     private void handleStickySendNativeEvent(Event event) {

@@ -23,10 +23,8 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  dispatchAction(action) {
-    const state = action(this);
-    if (state !== undefined) {
-      this.setState(state);
-    }
+  invalidate(state = {}, callback) {
+    this.setState({}, callback);
   }
+
 }
