@@ -16,12 +16,10 @@ export const RouteName = Object.freeze({
 export const RouteMap = {
   [RouteName.Main]: {
     screen: MainScreen,
-    navigationOptions: {
-      header: null
-    }
   },
   [RouteName.Center]: {
     screen: CenterScreen,
+    path: 'center/:name',
     navigationOptions: {
       header: null
     }
@@ -34,9 +32,6 @@ export const RouteMap = {
   }
 };
 
-// RouteConfigMap
-export const RouteConfigMap = {
+export default StackNavigator(RouteMap, {
   initialRouteName: RouteName.Main,
-};
-
-export default StackNavigator(RouteMap, RouteConfigMap);
+});

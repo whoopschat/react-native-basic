@@ -115,7 +115,7 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
         // send event by device event emitter
         this.getReactApplicationContext()
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                .emit("NativeEvent", event.toWritableMap());
+                .emit(RNBridgeConstants.MODULE_EMIT_EVENT, event.toWritableMap());
     }
 
     private static class Event {

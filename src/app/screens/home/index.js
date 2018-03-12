@@ -2,21 +2,18 @@ import React from 'react';
 import {Button, Image, Text, View} from 'react-native'
 import {RouteName} from '../../routers';
 
-const jumpAction = (action) => {
-  action.navigator.navigate(RouteName.Center);
-};
-
-class HomeScreen extends ScreenComponent {
+class HomeScreen extends BaseComponent {
 
   render() {
     return (
       <View>
         <Text>HomeScreen {Locales.lang('你好')}
-          -> {this.navigator.getParam('name', 'MyName')} {this.props.login.status || '------------------'}</Text>
+          -> {this.router.getParam('name', 'MyName')} {this.props.login.status || '------------------'}</Text>
+
         <Image source={Resources.assets.watermark}/>
         <Button
           onPress={() => {
-            this.dispatchAction(jumpAction)
+            this.router.navigate(RouteName.Center)
           }}
           title='Navigation Page'
           color='#841584'

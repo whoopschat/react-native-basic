@@ -14,6 +14,13 @@ const applyPrototype = () => {
     return true;
   };
 
+  // =======================================
+  //  Number
+  // =======================================
+
+  Number.prototype.toInt = function () {
+    return this;
+  };
 
   // =======================================
   //  String

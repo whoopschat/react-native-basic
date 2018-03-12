@@ -12,15 +12,23 @@ import Logger from './services/logger';
 import Store from './services/store';
 import Http from './services/http';
 // components
-import Screen from './components/screen';
+import BaseComponent from './components/base';
 
-Locales.config("zh");
+Locales.config('zh');
+
+////////////////////////////////////////////////////////
+//////// Global
+////////////////////////////////////////////////////////
 
 global.Config = Config;
+// modules
 global.Bridge = Bridge;
+// resources
 global.Resources = Resources;
 global.Locales = Locales;
+// services
 global.Logger = Logger;
 global.Store = Store;
 global.Http = Http;
-global.ScreenComponent = Screen.ScreenComponent;
+// components
+global.BaseComponent = BaseComponent;
