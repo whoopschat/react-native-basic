@@ -2,20 +2,25 @@
 
 import './services/prototype';
 import Config from './config'
-import Languages from './resources/languages';
-import Logger from './services/logger';
-import Screen from './services/screen';
-import Store from './services/store';
-import Resources from './resources/resources';
+// modules
 import Bridge from './modules/bridge';
+// resources
+import Resources from './resources/resources';
+import Locales from './resources/locales';
+// services
+import Logger from './services/logger';
+import Store from './services/store';
+import Http from './services/http';
+// components
+import Screen from './components/screen';
 
-global.ScreenComponent = Screen.ScreenComponent;
+Locales.config("zh");
+
 global.Config = Config;
-global.Logger = Logger;
-global.Resources = Resources;
-global.Lang = Languages;
-global.Store = {
-  configureStore: Store.configureStore,
-  connectState: Store.connectState
-};
 global.Bridge = Bridge;
+global.Resources = Resources;
+global.Locales = Locales;
+global.Logger = Logger;
+global.Store = Store;
+global.Http = Http;
+global.ScreenComponent = Screen.ScreenComponent;

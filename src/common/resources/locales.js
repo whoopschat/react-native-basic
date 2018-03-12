@@ -1,18 +1,18 @@
 'use strict';
 
-const config = {
+const LocalesConfig = {
   DEFAULT_LOCALES: 'zh',
-  LOCALES: 'en',
+  LOCALES: 'zh',
 };
 
 const lang = (key) => {
-  const locales = getLanguage(config.LOCALES);
+  const locales = getLocale(LocalesConfig.LOCALES);
   if (locales !== undefined
     && locales.hasOwnProperty('default')
     && locales['default'].hasOwnProperty(key)) {
     return locales['default'][key];
   }
-  const defaultLocales = getLanguage(config.DEFAULT_LOCALES);
+  const defaultLocales = getLocale(LocalesConfig.DEFAULT_LOCALES);
   if (defaultLocales !== undefined
     && defaultLocales.hasOwnProperty('default')
     && defaultLocales['default'].hasOwnProperty(key)) {
@@ -21,13 +21,20 @@ const lang = (key) => {
   return key;
 };
 
-const getLanguage = (locales) => {
+const getLocale = (locales) => {
   if (Resources.hasOwnProperty("locales")
     && Resources['locales'].hasOwnProperty(locales)) {
     return Resources['locales'][locales];
   }
 };
 
+const config = (locales, defaultLocales = LocalesConfig.DEFAULT_LOCALES) => {
+  Object.assign(LocalesConfig, {
+    DEFAULT_LOCALES: defaultLocales,
+    LOCALES: locales
+  });
+};
+
 export default {
-  lang
+  lang, config
 };

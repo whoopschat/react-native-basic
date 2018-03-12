@@ -1,12 +1,12 @@
 'use strict';
-import Navigator from './navigator'
+import Navigator from '../services/navigator'
 
 import React from 'react';
 
 class ScreenComponent extends React.Component {
 
   static connect = function (state, actions) {
-    return Store.connectState(this, state, actions)
+    return Store.connect(this, state, actions)
   };
 
   constructor(props) {
@@ -26,9 +26,7 @@ class ScreenComponent extends React.Component {
       this.setState(state);
     }
   }
-
 }
-
 
 export default {
   ScreenComponent: ScreenComponent

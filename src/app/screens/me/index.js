@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
+import {demoGetApi} from "../../apis/demo";
 
 export default class MeScreen extends ScreenComponent {
 
@@ -17,9 +18,9 @@ export default class MeScreen extends ScreenComponent {
         <Button
           onPress={() => {
             this.dispatchAction(action => {
-              return {
-                value: 'New Text'
-              }
+              demoGetApi().then(data => {
+                action.dispatchAction(a => ({value:JSON.stringify(data)}))
+              });
             })
           }}
           title='Ok!'

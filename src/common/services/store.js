@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-const connectState = (_component, _state = (state) => (state), _action) => {
+const connectStore = (_component, _state = (state) => (state), _action) => {
   return connect(_state, _action)(_component)
 };
 
@@ -14,5 +14,6 @@ const configureStore = (reducers, initialState) => {
 };
 
 export default {
-  connectState, configureStore
+  connect: connectStore,
+  configure: configureStore
 }

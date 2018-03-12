@@ -7,7 +7,7 @@ import Routers from './app/routers';
 export default class Root extends Component {
   render() {
     return (
-      <Provider store={Store.configureStore(Reducers)}>
+      <Provider store={Store.configure(Reducers)}>
         <Routers/>
       </Provider>
     )

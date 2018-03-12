@@ -24,7 +24,7 @@ const config = {
     },
 
     // API server
-    API_SERVER: isProd ? 'http://192.168.69.66' : 'http://192.168.69.66',
+    API_SERVER: isProd ? 'http://192.168.69.74' : 'http://192.168.69.74',
 
     // API version
     API_VERSION: '2.0',
