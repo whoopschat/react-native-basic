@@ -13,7 +13,26 @@ const configureStore = (reducers, initialState) => {
   return createStoreWithMiddleware(combineReducers(reducers), initialState);
 };
 
+const createAction = (type, params = {}) => {
+  return Object.assign({}, params, {
+    type: type
+  })
+};
+
+const handleActions = (handlers, defaultState) => {
+  return (state = defaultState, action) => {
+    if (action.hasOwnProperty('type') && handlers.hasOwnProperty(action['type'])) {
+      const handle = handlers[action['type']];
+      if (typeof handle === 'function') {
+        return handle(state, action);
+      }
+    }
+    return {...state}
+  }
+};
+
 export default {
   connect: connectStore,
-  configure: configureStore
+  configure: configureStore,
+  createAction, handleActions
 }

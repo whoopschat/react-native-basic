@@ -1,4 +1,5 @@
 'use strict';
+
 // 模拟用户信息
 import {LOGIN_IN_DOING, LOGIN_IN_DONE, LOGIN_IN_ERROR} from '../constants/login';
 
@@ -11,33 +12,12 @@ let user = {
 export function login() {
   console.log('登录方法');
   return dispatch => {
-    dispatch(isLogining());
+    dispatch(Store.createAction(LOGIN_IN_DOING));
     // 模拟用户登录
     fetch('https://www.baidu.com/').then(res => {
-      dispatch(loginSuccess(true, user));
+      dispatch(Store.createAction(LOGIN_IN_DONE, {user: user}));
     }).catch(e => {
-      dispatch(loginError());
+      dispatch(Store.createAction(LOGIN_IN_ERROR));
     })
-  }
-}
-
-function isLogining() {
-  return {
-    type: LOGIN_IN_DOING
-  }
-}
-
-function loginSuccess(isSuccess, user) {
-  console.log('success');
-  return {
-    type: LOGIN_IN_DONE,
-    user: user,
-  }
-}
-
-function loginError() {
-  console.log('error');
-  return {
-    type: LOGIN_IN_ERROR
   }
 }

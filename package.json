@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "clear": "cd scripts & clear",
+    "build-android": "react-native bundle --entry-file ./index.js --platform android --dev false --bundle-output ./android/app/src/main/assets/main.jsbundle --sourcemap-output ./android/app/src/main/assets/main.jsbundle.map --assets-dest ./android/app/src/main/res --reset-cache --verbose",
+    "build-ios": "react-native bundle --entry-file ./index.js --platform ios --dev false --bundle-output ./ios/ReactApp/React/main.jsbundle --sourcemap-output ./ios/ReactApp/React/main.jsbundle.map --assets-dest ./ios/ReactApp/React --reset-cache --verbose",
     "test": "jest"
   },
   "dependencies": {
@@ -15,7 +16,6 @@
     "react-navigation": "^1.3.2",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-actions": "^2.2.1",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
