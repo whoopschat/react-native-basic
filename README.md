@@ -23,7 +23,34 @@ a react native client basic
 * `ios/`: ios native project
 * `node_modules/`: node dependencies
 * `src/`: main source code
-    - `app/`: api,components,screens
-    - `common/`: languages,modules,services,global and config
-    - `redux/`: stores
+    - `app/`: app components, models, routers, screens
+    - `common/`: base component, modules ,services, global
+    - `res/`: resources, assets, configs, locales
+    
+## Resources Manager Plugin
+[React Assets Manager](https://github.com/whoopschat/react-assets-manager)
+
+The plug-in can automatically generate resources.js files from the res directory
+
+`/src/res  => resources.js`
+```
+'use strict';
+
+export default {
+	assets: 	{
+		watermark: require('../../res/assets/watermark.jpg')
+	},
+	configs: 	{
+		config_android: require('../../res/configs/config.android.js'),
+		config_base: require('../../res/configs/config.base.js'),
+		config_dev: require('../../res/configs/config.dev.js'),
+		config_ios: require('../../res/configs/config.ios.js'),
+		config_prod: require('../../res/configs/config.prod.js')
+	},
+	locales: 	{
+		en: require('../../res/locales/en.js'),
+		zh: require('../../res/locales/zh.js')
+	}
+}
+```
 

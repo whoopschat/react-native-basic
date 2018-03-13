@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Image, Text, View} from 'react-native'
-import {RouteName} from '../../routers';
+import {RouteNames} from '../../routers/routers';
 
 class HomeScreen extends BaseComponent {
 
@@ -13,7 +13,7 @@ class HomeScreen extends BaseComponent {
         <Image source={Resources.assets.watermark}/>
         <Button
           onPress={() => {
-            this.router.navigate(RouteName.Center)
+            this.router.navigate(RouteNames.Center)
           }}
           title='Navigation Page'
           color='#841584'

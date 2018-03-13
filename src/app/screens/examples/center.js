@@ -1,12 +1,12 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native'
-import {RouteName} from '../../routers';
 import {login} from '../../models/actions/login';
+import {RouteNames} from '../../routers/routers';
 
 
 const buttonAction = (that) => {
   that.dispatch(login());
-  that.router.navigate(RouteName.Navigation, {name: 'callback'})
+  that.router.navigate(RouteNames.Navigation, {name: 'callback'})
   return {
     name: ' -------------- '
   }
@@ -22,7 +22,7 @@ class CenterScreen extends BaseComponent {
         <Button
           onPress={() => {
             this.dispatch(login());
-            this.router.navigate(RouteName.Navigation, {name: 'callback'})
+            this.router.navigate(RouteNames.Navigation, {name: 'callback'})
           }
           }
           title='Home Page'

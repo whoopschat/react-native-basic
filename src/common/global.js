@@ -13,6 +13,8 @@ import Store from './services/store';
 import Http from './services/http';
 // components
 import BaseComponent from './components/base';
+// react-native
+import {Platform} from "react-native";
 
 // config
 Locales.config('zh');
@@ -33,3 +35,7 @@ global.Store = Store;
 global.Http = Http;
 // components
 global.BaseComponent = BaseComponent;
+// react-native
+global.Build = {
+  OS: Platform.OS
+};

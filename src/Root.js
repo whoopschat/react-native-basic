@@ -1,17 +1,27 @@
+'use strict';
+
 import './common/global';
 import React, {Component} from 'react';
-import {Platform} from 'react-native';
 import {Provider} from 'react-redux';
 import Reducers from './app/reducers';
-import Routers from './app/routers';
+import Routers from './app/navigator';
 
-const prefix = Platform.OS === 'android' ? 'router://rn/' : 'router://';
+const AppNavigator = Routers.AppNavigator;
+const getCurrentRouteName = Routers.getCurrentRouteName;
+
+const prefix = Configs.getConfig('DEEP_LINK_PREFIX', '----------');
 
 export default class Root extends Component {
   render() {
     return (
       <Provider store={Store.configure(Reducers)}>
-        <Routers uriPrefix={prefix}/>
+        <AppNavigator uriPrefix={prefix} onNavigationStateChange={(prevState, currentState) => {
+          const currentScreen = getCurrentRouteName(currentState);
+          const prevScreen = getCurrentRouteName(prevState);
+          if (prevScreen !== currentScreen) {
+            // prevScreen
+          }
+        }}/>
       </Provider>
     )
   }
