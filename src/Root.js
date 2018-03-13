@@ -9,7 +9,7 @@ import Routers from './app/navigator';
 const AppNavigator = Routers.AppNavigator;
 const getCurrentRouteName = Routers.getCurrentRouteName;
 
-const prefix = Configs.getConfig('DEEP_LINK_PREFIX', '----------');
+const prefix = Configs.getConfig('DEEP_LINK_PREFIX', '');
 
 export default class Root extends Component {
   render() {

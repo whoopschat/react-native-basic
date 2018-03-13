@@ -34,5 +34,6 @@ const handleActions = (handlers, defaultState) => {
 export default {
   connect: connectStore,
   configure: configureStore,
-  createAction, handleActions
+  createAction,
+  handleActions
 }
