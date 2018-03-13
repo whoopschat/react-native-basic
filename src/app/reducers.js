@@ -1,7 +1,7 @@
 'use strict';
 
-import login from './models/reducers/login';
-import demo from './models/reducers/demo';
+import login from './redux/reducers/login';
+import demo from './redux/reducers/demo';
 
 export default {
   login,demo

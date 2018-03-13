@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native'
-import {login} from '../../models/actions/login';
+import {login} from '../../redux/actions/login';
 import {RouteNames} from '../../routers/routers';
 
 

@@ -1,10 +1,18 @@
 'use strict';
 
+///////////////////////////////////////////////////
+/////// initialState
+///////////////////////////////////////////////////
+
 const initialState = {
   status: '点击登录',
   isSuccess: false,
   user: null,
 };
+
+///////////////////////////////////////////////////
+/////// Reducer
+///////////////////////////////////////////////////
 
 export default Store.handleActions({
   LOGIN_IN_DOING: (state, action) => ({
@@ -25,4 +33,14 @@ export default Store.handleActions({
     isSuccess: true,
     user: null,
   }),
-},initialState)
+}, initialState)
+
+///////////////////////////////////////////////////
+/////// Selector
+///////////////////////////////////////////////////
+
+export const userSelector = Store.createSelector(
+  state => state.status,
+  state => state.user,
+  (status, user) => (JSON.stringify(user))
+);

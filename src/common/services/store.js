@@ -2,6 +2,7 @@
 import {connect} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import {createSelector} from 'reselect';
 
 const connectStore = (_component, _state = (state) => (state), _action) => {
   return connect(_state, _action)(_component)
@@ -35,5 +36,5 @@ export default {
   connect: connectStore,
   configure: configureStore,
   createAction,
-  handleActions
+  handleActions, createSelector
 }

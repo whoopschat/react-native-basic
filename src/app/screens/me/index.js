@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
-import {demoGetApi} from '../../models/apis/demo';
+import {demoGetApi} from '../../fetch/demo';
 
 export default class MeScreen extends BaseComponent {
 

@@ -118,7 +118,7 @@ const createOptions = (...opts) => {
   return returnOpts;
 };
 
-const requestGet = (url, params = {}, opts = {}, timeout) => {
+const get = (url, params = {}, opts = {}, timeout) => {
   let connector = '';
   if (url.indexOf('?') === -1) {
     connector = '?';
@@ -128,7 +128,7 @@ const requestGet = (url, params = {}, opts = {}, timeout) => {
   return handleRequest(url + connector + paramBody(params), Object.assign({}, opts, {method: 'GET'}), timeout);
 };
 
-const requestDelete = (url, params = {}, opts = {}, timeout) => {
+const del = (url, params = {}, opts = {}, timeout) => {
   let connector = '';
   if (url.indexOf('?') === -1) {
     connector = '?';
@@ -138,7 +138,7 @@ const requestDelete = (url, params = {}, opts = {}, timeout) => {
   return handleRequest(url + connector + paramBody(params), Object.assign({}, opts, {method: 'DELETE'}), timeout);
 };
 
-const requestPost = (url, params = {}, opts = {}, timeout) => {
+const post = (url, params = {}, opts = {}, timeout) => {
   let body = '';
   if (opts['headers']['Content-Type'] === 'application/json') {
     body = JSON.stringify(params);
@@ -148,7 +148,7 @@ const requestPost = (url, params = {}, opts = {}, timeout) => {
   return handleRequest(url, Object.assign({}, opts, {method: 'POST', body: body}), timeout);
 };
 
-const requestPut = (url, params = {}, opts = {}, timeout) => {
+const put = (url, params = {}, opts = {}, timeout) => {
   let body = '';
   if (opts['headers']['Content-Type'] === 'application/json') {
     body = JSON.stringify(params);
@@ -158,7 +158,17 @@ const requestPut = (url, params = {}, opts = {}, timeout) => {
   return handleRequest(url, Object.assign({}, opts, {method: 'PUT', body: body}), timeout);
 };
 
+const upload = (url, formData, opts = {}, timeout) => {
+  return handleRequest(url, Object.assign({}, opts, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8'
+    },
+    body: formData
+  }), timeout);
+};
+
 export default {
-  requestGet, requestPost, requestPut, requestDelete, createOptions
+  get, post, put, del, upload, createOptions
 }
 

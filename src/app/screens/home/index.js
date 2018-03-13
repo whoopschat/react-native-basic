@@ -1,13 +1,12 @@
 import React from 'react';
 import {Button, Image, StyleSheet, Text, View} from 'react-native'
 import {RouteNames} from '../../routers/routers';
+import {userSelector} from "../../redux/reducers/login";
 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#FFFFFF'
   },
   imageStyle: {
@@ -22,7 +21,7 @@ class HomeScreen extends BaseComponent {
     return (
       <View style={styles.container}>
         <Text>HomeScreen {Locales.lang('你好')}
-          -> {this.router.getParam('name', 'MyName')} {this.props.login.status || '------------------'}</Text>
+          -> {this.router.getParam('name', 'MyName')} {this.props.loginSelector}</Text>
         <Image style={styles.imageStyle} source={Resources.assets.watermark}/>
         <Button
           onPress={() => {
@@ -38,5 +37,10 @@ class HomeScreen extends BaseComponent {
 
 }
 
-export default HomeScreen.connect()
+export default HomeScreen.connect(state => (
+  {
+    login: state.login,
+    loginSelector: userSelector(state.login)
+  }
+))
 
