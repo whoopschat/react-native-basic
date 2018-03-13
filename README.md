@@ -15,6 +15,8 @@ a react native client basic
     - launch `React Native Debugger`
     - press `Cmd+D` on iOS/`Cmd+M` on Android for dev menu
     - select `Start Remote JS Debugging`
+* run `npm run build-ios` to build ios js bundle
+* run `npm run build-android` to build android js bundle
 
 ## Folder Structure
 
@@ -53,4 +55,3 @@ export default {
 	}
 }
 ```
-
