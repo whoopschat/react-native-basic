@@ -39,7 +39,6 @@ const getConfig = (key, def) => {
     initConfig(Object.assign(getConfigForResources('config_base'), getConfigForResources('config_' + Build.OS)),
       getConfigForResources('config_prod'),
       getConfigForResources('config_dev'));
-    alert(JSON.stringify(config));
     init = true;
   }
   const env = isProd() ? 'prod' : 'dev';

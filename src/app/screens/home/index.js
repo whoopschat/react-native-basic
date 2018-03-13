@@ -1,16 +1,29 @@
 import React from 'react';
-import {Button, Image, Text, View} from 'react-native'
+import {Button, Image, StyleSheet, Text, View} from 'react-native'
 import {RouteNames} from '../../routers/routers';
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF'
+  },
+  imageStyle: {
+    width: 200,
+    height: 100
+  }
+});
 
 class HomeScreen extends BaseComponent {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>HomeScreen {Locales.lang('你好')}
           -> {this.router.getParam('name', 'MyName')} {this.props.login.status || '------------------'}</Text>
-
-        <Image source={Resources.assets.watermark}/>
+        <Image style={styles.imageStyle} source={Resources.assets.watermark}/>
         <Button
           onPress={() => {
             this.router.navigate(RouteNames.Center)
