@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
-import {demoGetApi} from "../../models/apis/demo";
+import {demoGetApi} from '../../models/apis/demo';
 
 export default class MeScreen extends BaseComponent {
 
@@ -17,6 +17,9 @@ export default class MeScreen extends BaseComponent {
         <Text>{this.state.value}</Text>
         <Button
           onPress={() => {
+            this.invalidate({
+              value: 'LOADING...'
+            })
             demoGetApi().then(data => {
               this.invalidate({
                 value: JSON.stringify(data)
@@ -27,9 +30,9 @@ export default class MeScreen extends BaseComponent {
               })
             });
           }}
-          title='Ok!'
-          color="#841584"
-          accessibilityLabel="Ok, Great!"
+          title='OK'
+          color='#841584'
+          accessibilityLabel='Ok, Great!'
         />
       </View>
     );

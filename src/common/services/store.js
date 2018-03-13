@@ -1,5 +1,5 @@
 'use strict';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 

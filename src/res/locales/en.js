@@ -1,4 +1,6 @@
+'use strict';
 
-export default {
-  你好:"hehe"
-}
+const lang = {
+  ['你好']: 'how are you?'
+};
+export default lang;

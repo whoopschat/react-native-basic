@@ -1,4 +1,5 @@
 'use strict';
+const isProd = process.env.NODE_ENV === 'production';
 
 const LOG_LEVELS = {
   'INFO': 1,
@@ -8,7 +9,7 @@ const LOG_LEVELS = {
 
 const getLogWithLevel = (level) => {
   return (...args) => {
-    if (LOG_LEVELS[level] >= LOG_LEVELS[Config.getConfig('LOG_LEVEL', 'ERROR')]) {
+    if (LOG_LEVELS[level] >= LOG_LEVELS[isProd ? 'ERROR' : 'INFO']) {
       console.log(...args);
     }
   };

@@ -1,6 +1,6 @@
 import './common/global';
 import React, {Component} from 'react';
-import {Platform} from "react-native";
+import {Platform} from 'react-native';
 import {Provider} from 'react-redux';
 import Reducers from './app/reducers';
 import Routers from './app/routers';

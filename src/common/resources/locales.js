@@ -15,7 +15,7 @@ const lang = (key) => {
 };
 
 const getLocale = (locales) => {
-  if (Resources.hasOwnProperty("locales")
+  if (Resources.hasOwnProperty('locales')
     && Resources['locales'].hasOwnProperty(locales)) {
     return Resources['locales'][locales];
   }

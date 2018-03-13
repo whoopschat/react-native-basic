@@ -1,7 +1,5 @@
 'use strict';
 
-const fetch_timeout = 30000;
-
 const paramBody = (params) => {
   let queryString = Object
   .entries(params)
@@ -13,13 +11,13 @@ const paramBody = (params) => {
   return queryString;
 };
 
-const parseJson = (str) => {
+const checkJson = (str) => {
   if (typeof str === 'string') {
     try {
       let obj = JSON.parse(str);
       if (!!(typeof obj === 'object' && obj)) {
         return {
-          jsonType: true,
+          isJson: true,
           data: obj
         };
       }
@@ -27,70 +25,62 @@ const parseJson = (str) => {
     }
   }
   return {
-    jsonType: false,
+    isJson: false,
     data: str
   };
 };
 
-const handleResponse = (response) => {
-  let status = response.status;
-  return response.text().then(function (text) {
-    const json = parseJson(text);
-    return {
-      status: status,
-      body: json.data,
-      res: {
-        jsonType: json.jsonType,
-        timeOut: false,
-        headers: response.headers,
-        url: response.url,
-      }
-    }
-  });
-};
-
-const handleRequest = (url, opts, timeout) => {
-  const requestTimeout = timeout || fetch_timeout;
+const handleRequest = (url, opts, timeout = 30000) => {
+  const requestTimeout = timeout;
   const requestPromise = fetch(url, opts).then(res => {
-    return handleResponse(res);
+    let status = res.status;
+    return res.text().then(function (text) {
+      const json = checkJson(text);
+      return {
+        success: true,
+        status: status,
+        body: json.data,
+        res: {
+          url: res.url,
+          isJson: json.isJson,
+          error: '',
+          headers: res.headers
+        }
+      }
+    });
   });
   let timeoutAction = null;
-  const timerPromise = new Promise((resolve) => {
+  const timerPromise = new Promise((resolve, reject) => {
     timeoutAction = () => {
-      resolve({
-        status: 0xE01,
-        body: '',
-        res: {
-          jsonType: false,
-          timeOut: true,
-          headers: {},
-          url: url,
-        }
-      });
+      reject(new TypeError('Network request timeout'));
     }
   });
   setTimeout(() => {
     timeoutAction();
   }, requestTimeout);
-  return Promise.race([requestPromise, timerPromise]);
+  return Promise.race([requestPromise, timerPromise]).catch(error => {
+    return Promise.resolve({
+      success: false,
+      status: 0,
+      body: '',
+      res: {
+        url: url,
+        isJson: false,
+        error: error.message,
+        headers: {}
+      }
+    })
+  });
 };
 
-const getDefaultOpts = (contentType) => {
-  return {
-    headers: {
-      'Content-Type': contentType || 'application/x-www-form-urlencoded'
-    }
-  };
-};
-
-const margeOpts = (opt1, opt2) => {
+const margeOptions = (opt1, opt2) => {
   const resultOpt = {};
   for (const attr in opt1) {
     if (opt1.hasOwnProperty(attr)) {
       if (resultOpt.hasOwnProperty(attr)
         && typeof resultOpt[attr] === 'object'
         && typeof opt1[attr] === 'object') {
-        resultOpt[attr] = margeOpts(resultOpt[attr], opt1[attr]);
+        resultOpt[attr] = margeOptions(resultOpt[attr], opt1[attr]);
       } else {
         resultOpt[attr] = opt1[attr];
       }
@@ -101,7 +91,7 @@ const margeOpts = (opt1, opt2) => {
       if (resultOpt.hasOwnProperty(attr)
         && typeof resultOpt[attr] === 'object'
         && typeof opt2[attr] === 'object') {
-        resultOpt[attr] = margeOpts(resultOpt[attr], opt2[attr]);
+        resultOpt[attr] = margeOptions(resultOpt[attr], opt2[attr]);
       } else {
         resultOpt[attr] = opt2[attr];
       }
@@ -114,10 +104,16 @@ const margeOpts = (opt1, opt2) => {
 //////  export
 ////////////////////////////////////////////////////////////////
 
-const createOptions = (contentType, ...opts) => {
-  let returnOpts = getDefaultOpts(contentType);
+const createOptions = (...opts) => {
+  let returnOpts = {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  };
   opts.forEach(value => {
-    returnOpts = margeOpts(returnOpts, value)
+    if (typeof value === 'object') {
+      returnOpts = margeOptions(returnOpts, value)
+    }
   });
   return returnOpts;
 };
