@@ -1,5 +1,4 @@
 'use strict';
-import Router from '../services/router'
 import {withNavigation} from "react-navigation";
 
 import React from 'react';
@@ -17,7 +16,7 @@ export default class BaseComponent extends React.Component {
   constructor(props) {
     super(props);
     // router
-    this.router = new Router(this);
+    this.router = Navigation.createRouter(this.props.hasOwnProperty('navigation') ? this.props.navigation : null);
   }
 
   dispatch(action) {

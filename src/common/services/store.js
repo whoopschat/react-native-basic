@@ -14,13 +14,13 @@ const configureStore = (reducers, initialState) => {
   return createStoreWithMiddleware(combineReducers(reducers), initialState);
 };
 
-const createAction = (type, params = {}) => {
+const createActionProxy = (type, params = {}) => {
   return Object.assign({}, params, {
     type: type
   })
 };
 
-const handleActions = (handlers, defaultState) => {
+const handleActionsProxy = (handlers, defaultState) => {
   return (state = defaultState, action) => {
     if (action.hasOwnProperty('type') && handlers.hasOwnProperty(action['type'])) {
       const handle = handlers[action['type']];
@@ -32,9 +32,14 @@ const handleActions = (handlers, defaultState) => {
   }
 };
 
+const createSelectorProxy = (...args) => {
+  return createSelector(...args)
+};
+
 export default {
   connect: connectStore,
   configure: configureStore,
-  createAction,
-  handleActions, createSelector
+  createAction: createActionProxy,
+  handleActions: handleActionsProxy,
+  createSelector: createSelectorProxy
 }

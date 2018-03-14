@@ -4,6 +4,8 @@
 /////// initialState
 ///////////////////////////////////////////////////
 
+import {RouteNames} from "../../routers/routers";
+
 const initialState = {
   status: '点击登录',
   isSuccess: false,
@@ -15,12 +17,15 @@ const initialState = {
 ///////////////////////////////////////////////////
 
 export default Store.handleActions({
-  LOGIN_IN_DOING: (state, action) => ({
-    ...state,
-    status: '正在登录',
-    isSuccess: false,
-    user: null,
-  }),
+  LOGIN_IN_DOING: (state, action) => {
+    Navigation.navigate(RouteNames.Navigation, {name: 'callback'})
+    return {
+      ...state,
+      status: '正在登录',
+      isSuccess: false,
+      user: null,
+    }
+  },
   LOGIN_IN_DONE: (state, action) => ({
     ...state,
     status: JSON.stringify(action.user),

@@ -14,6 +14,21 @@ const applyPrototype = () => {
     return true;
   };
 
+  Array.prototype.removeWith = function (where) {
+    if (typeof where === 'function') {
+      let removeIndexArray = [];
+      this.forEach((value, index) => {
+        if (where(value)) {
+          removeIndexArray.push(index);
+        }
+      });
+      removeIndexArray.reverse();
+      removeIndexArray.forEach(value => {
+        this.removeAt(value)
+      });
+    }
+  };
+
   // =======================================
   //  Number
   // =======================================
@@ -37,7 +52,7 @@ const applyPrototype = () => {
       str = str.replace(s1, s2);
     }
     return str;
-  }
+  };
 
 };
 

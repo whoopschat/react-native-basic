@@ -158,17 +158,17 @@ const put = (url, params = {}, opts = {}, timeout) => {
   return handleRequest(url, Object.assign({}, opts, {method: 'PUT', body: body}), timeout);
 };
 
-const upload = (url, formData, opts = {}, timeout) => {
+const form = (url, data, opts = {}, timeout) => {
   return handleRequest(url, Object.assign({}, opts, {
     method: 'POST',
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8'
     },
-    body: formData
+    body: data || new FormData()
   }), timeout);
 };
 
 export default {
-  get, post, put, del, upload, createOptions
+  get, post, put, del, form, createOptions
 }
 

@@ -11,6 +11,7 @@ import Configs from './resources/configs'
 import Logger from './services/logger';
 import Store from './services/store';
 import Http from './services/http';
+import Navigation from './services/navigation';
 // components
 import BaseComponent from './components/base';
 // react-native
@@ -30,6 +31,7 @@ global.Resources = Resources;
 global.Locales = Locales;
 global.Configs = Configs;
 // services
+global.Navigation = Navigation;
 global.Logger = Logger;
 global.Store = Store;
 global.Http = Http;

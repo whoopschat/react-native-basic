@@ -22,7 +22,6 @@ class CenterScreen extends BaseComponent {
         <Button
           onPress={() => {
             this.dispatch(login());
-            this.router.navigate(RouteNames.Navigation, {name: 'callback'})
           }
           }
           title='Home Page'

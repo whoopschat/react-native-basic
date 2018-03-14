@@ -25,7 +25,7 @@ export default class NavigationScreen extends BaseComponent {
         <Text>Action : popToTop</Text>
         <Button
           onPress={() =>
-            this.router.popToTop()
+            Navigation.popToTop()
           }
           title='POP TO TOP'
           color='#841584'
