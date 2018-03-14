@@ -18,7 +18,6 @@ const initialState = {
 
 export default Store.handleActions({
   LOGIN_IN_DOING: (state, action) => {
-    Navigation.navigate(RouteNames.Navigation, {name: 'callback'})
     return {
       ...state,
       status: '正在登录',

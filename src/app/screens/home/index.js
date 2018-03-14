@@ -25,7 +25,7 @@ class HomeScreen extends BaseComponent {
         <Image style={styles.imageStyle} source={Resources.assets.watermark}/>
         <Button
           onPress={() => {
-            Navigation.navigate(RouteNames.Center);
+            this.router.navigate(RouteNames.Center);
           }}
           title='Navigation Page'
           color='#841584'

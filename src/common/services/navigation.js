@@ -9,7 +9,7 @@ class Router {
   }
 
   dispatch(action) {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('dispatch')) {
       const {dispatch} = this.navigation;
       dispatch(action);
@@ -17,7 +17,7 @@ class Router {
   }
 
   navigate(name, params = {}, action) {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('navigate')) {
       const {navigate} = this.navigation;
       navigate(name, params, action);
@@ -25,7 +25,7 @@ class Router {
   }
 
   push(name, params = {}, action) {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('push')) {
       const {push} = this.navigation;
       push(name, params, action);
@@ -33,7 +33,7 @@ class Router {
   }
 
   pop(n) {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('pop')) {
       const {pop} = this.navigation;
       pop(n);
@@ -41,7 +41,7 @@ class Router {
   }
 
   popToTop() {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('popToTop')) {
       const {popToTop} = this.navigation;
       popToTop();
@@ -49,7 +49,7 @@ class Router {
   }
 
   replace(name, params = {}, action) {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('replace')) {
       const {replace} = this.navigation;
       replace(name, params, action);
@@ -57,7 +57,7 @@ class Router {
   }
 
   back() {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('goBack')) {
       const {goBack} = this.navigation;
       goBack();
@@ -65,7 +65,7 @@ class Router {
   }
 
   getParam(paramName, defaultValue) {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('getParam')) {
       const {getParam} = this.navigation;
       return getParam(paramName, defaultValue);
@@ -73,15 +73,16 @@ class Router {
   }
 
   setParams(params = {}) {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('setParams')) {
       const {setParams} = this.navigation;
+      console.warn(params)
       setParams(params);
     }
   }
 
   isFocused() {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('isFocused')) {
       const {isFocused} = this.navigation;
       return isFocused();
@@ -89,7 +90,7 @@ class Router {
   }
 
   addListener(type, payload) {
-    if (this.navigation !== undefined
+    if (this.navigation !== null
       && this.navigation.hasOwnProperty('addListener')) {
       const {addListener} = this.navigation;
       return addListener(type, payload);
@@ -103,8 +104,7 @@ const createNavigator = (routeConfigMap, stackConfig = {}) => {
   class AppNavigator extends StackNavigator(routeConfigMap, stackConfig) {
     render() {
       const superRender = super.render();
-      const navigation = this.props.navigation || this._navigation;
-      navigator.navigation = navigation;
+      navigator.navigation = this.props.navigation || this._navigation;
       return superRender;
     }
   }

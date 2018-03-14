@@ -17,7 +17,7 @@ export default class NavigationScreen extends BaseComponent {
         <Text>age : {this.router.getParam('age', '100')}</Text>
         <Button
           onPress={() =>
-            this.router.setParams({age: 69})
+            this.props.navigation.setParams({age: 69})
           }
           title='Change Age'
           color='#841584'
