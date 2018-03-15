@@ -6,8 +6,9 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "build-android": "react-native bundle --entry-file ./index.js --platform android --dev false --bundle-output ./android/app/src/main/assets/main.jsbundle --sourcemap-output ./android/app/src/main/assets/main.jsbundle.map --assets-dest ./android/app/src/main/res --reset-cache --verbose",
-    "build-ios": "react-native bundle --entry-file ./index.js --platform ios --dev false --bundle-output ./ios/ReactApp/React/main.jsbundle --sourcemap-output ./ios/ReactApp/React/main.jsbundle.map --assets-dest ./ios/ReactApp/React --reset-cache --verbose",
+    "clean": "cd scripts&clean",
+    "package-ios": "cd scripts&package-ios-app",
+    "package-android": "cd scripts&package-android-app",
     "test": "jest"
   },
   "dependencies": {

@@ -6,6 +6,14 @@
 yarn.lock
 package-lock.json
 
+# ios bundle
+ios/*/React/
+
+# android bundle
+android/app/src/main/assets/react/*
+android/app/src/main/res/drawable-*/node_modules_*.*
+android/app/src/main/res/drawable-*/src_*.*
+
 # Xcode
 #
 build/
