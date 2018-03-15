@@ -1,9 +1,7 @@
-import {TabNavigator} from 'react-navigation';
-
 import HomeScreen from '../screens/home';
 import MeScreen from '../screens/me';
 
-const MainNavigator = TabNavigator({
+export default Navigation.createTabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
@@ -42,5 +40,3 @@ const MainNavigator = TabNavigator({
     },
   }
 });
-
-export default MainNavigator;

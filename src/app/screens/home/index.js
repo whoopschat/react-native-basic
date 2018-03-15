@@ -21,11 +21,11 @@ class HomeScreen extends BaseComponent {
     return (
       <View style={styles.container}>
         <Text>HomeScreen {Locales.lang('你好')}
-          -> {this.router.getParam('name', 'MyName')} {this.props.loginSelector}</Text>
+          -> {this.navIsFocused() ? 'Focused' : 'unFocused'} -> {this.navGetParam('name', 'Null Name')}\n {this.props.loginSelector}</Text>
         <Image style={styles.imageStyle} source={Resources.assets.watermark}/>
         <Button
           onPress={() => {
-            this.router.navigate(RouteNames.Center);
+            Navigation.navigate(RouteNames.Center);
           }}
           title='Navigation Page'
           color='#841584'

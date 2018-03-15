@@ -1,8 +1,8 @@
 'use strict';
 
-import {StackNavigator} from 'react-navigation';
+import {StackNavigator, TabNavigator, withNavigation} from 'react-navigation';
 
-class Router {
+class NavigatorProxy {
 
   constructor(navigation) {
     this.navigation = navigation;
@@ -32,60 +32,45 @@ class Router {
     }
   }
 
-  pop(n) {
+  pop(n, params) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('pop')) {
       const {pop} = this.navigation;
-      pop(n);
+      pop(n, params);
     }
   }
 
-  popToTop() {
+  popTo(name) {
+    if (this.navigation !== null
+      && this.navigation.hasOwnProperty('state')
+      && this.navigation.state.hasOwnProperty('routes')) {
+      try {
+        const {state} = this.navigation;
+        let totalRoutes = state.routes.length;
+        let targetIndex = -1;
+        try {
+          state.routes.forEach((route, index) => {
+            if (route.routeName === name) {
+              targetIndex = index + 1;
+              throw new Error("stopForEach")
+            }
+          });
+        } catch (e) {
+        }
+        if (targetIndex >= 0) {
+          const n = totalRoutes - targetIndex;
+          pop(n);
+        }
+      } catch (e) {
+      }
+    }
+  }
+
+  popToTop(params) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('popToTop')) {
       const {popToTop} = this.navigation;
-      popToTop();
-    }
-  }
-
-  replace(name, params = {}, action) {
-    if (this.navigation !== null
-      && this.navigation.hasOwnProperty('replace')) {
-      const {replace} = this.navigation;
-      replace(name, params, action);
-    }
-  }
-
-  back() {
-    if (this.navigation !== null
-      && this.navigation.hasOwnProperty('goBack')) {
-      const {goBack} = this.navigation;
-      goBack();
-    }
-  }
-
-  getParam(paramName, defaultValue) {
-    if (this.navigation !== null
-      && this.navigation.hasOwnProperty('getParam')) {
-      const {getParam} = this.navigation;
-      return getParam(paramName, defaultValue);
-    }
-  }
-
-  setParams(params = {}) {
-    if (this.navigation !== null
-      && this.navigation.hasOwnProperty('setParams')) {
-      const {setParams} = this.navigation;
-      console.warn(params)
-      setParams(params);
-    }
-  }
-
-  isFocused() {
-    if (this.navigation !== null
-      && this.navigation.hasOwnProperty('isFocused')) {
-      const {isFocused} = this.navigation;
-      return isFocused();
+      popToTop(params);
     }
   }
 
@@ -98,10 +83,14 @@ class Router {
   }
 }
 
-const navigator = new Router(null);
+/////////////////////////////////////////////////
+//////// Export
+/////////////////////////////////////////////////
 
-const createNavigator = (routeConfigMap, stackConfig = {}) => {
-  class AppNavigator extends StackNavigator(routeConfigMap, stackConfig) {
+const navigator = new NavigatorProxy(null);
+
+const createRootNavigator = (routeConfigMap, stackConfig = {}) => {
+  class AppRootNavigator extends StackNavigator(routeConfigMap, stackConfig) {
     render() {
       const superRender = super.render();
       navigator.navigation = this.props.navigation || this._navigation;
@@ -109,11 +98,19 @@ const createNavigator = (routeConfigMap, stackConfig = {}) => {
     }
   }
 
-  return AppNavigator
+  return AppRootNavigator
 };
 
-const createRouter = (navigation) => {
-  return new Router(navigation)
+const createTabNavigator = (routeConfigMap, config = {}) => {
+  class AppTabNavigator extends TabNavigator(routeConfigMap, config) {
+    render() {
+      const superRender = super.render();
+      navigator.navigation = this.props.navigation || this._navigation;
+      return superRender;
+    }
+  }
+
+  return AppTabNavigator
 };
 
 const navigate = (name, params = {}, action) => {
@@ -140,13 +137,23 @@ const popToTop = () => {
   navigator.popToTop()
 };
 
+const popTo = (name) => {
+  navigator.popTo(name)
+};
+
+const withNavigationProxy = (screen) => {
+  withNavigation(screen);
+};
+
 export default {
-  createNavigator,
-  createRouter,
+  createRootNavigator,
+  createTabNavigator,
+  withNavigation: withNavigationProxy,
   navigate,
   dispatch,
   push,
   back,
   pop,
-  popToTop
+  popToTop,
+  popTo
 }
