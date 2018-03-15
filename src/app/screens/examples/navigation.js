@@ -29,8 +29,10 @@ export default class NavigationScreen extends BaseComponent {
         />
         <Text>Action : popToTop</Text>
         <Button
-          onPress={() =>
+          onPress={() => {
             Navigation.popTo(RouteNames.Main)
+            Navigation.navigate(RouteNames.Center,{name:'---------'})
+          }
           }
           title='POP TO TOP'
           color='#841584'

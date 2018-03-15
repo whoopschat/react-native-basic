@@ -10,15 +10,15 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import com.react.bridge.RNBridgeConstants;
 import com.react.bridge.RNBridgeHandler;
 import com.react.bridge.RNBridgeModule;
 import com.react.bridge.RNBridgePackage;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -50,11 +50,12 @@ public class MainApplication extends Application implements ReactApplication {
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
-        RNBridgeModule.postSticky("init", null);
-        RNBridgeModule.register(RNBridgeConstants.MODULE_READY, new RNBridgeHandler() {
+        Map<String, Object> configs = new HashMap<>();
+        configs.put("device_id", "11111111111111111111111111111");
+        RNBridgeModule.postConfigs(configs);
+        RNBridgeModule.register(RNBridgeConstants.MODULE_RECEIVE_READY, new RNBridgeHandler() {
             @Override
             public void handle(Activity activity, String type, Map<String, Object> data, Promise promise) {
-                Toast.makeText(activity, RNBridgeConstants.MODULE_READY, Toast.LENGTH_SHORT).show();
                 promise.resolve(null);
             }
         });

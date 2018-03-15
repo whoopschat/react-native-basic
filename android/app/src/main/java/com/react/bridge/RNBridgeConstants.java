@@ -6,7 +6,8 @@ package com.react.bridge;
 public interface RNBridgeConstants {
 
     String MODULE_NAME = "RNBridgeModule";
-    String MODULE_READY = "RNBridgeReady";
     String MODULE_EMIT_EVENT = "RNBridgeEvent";
+    String MODULE_RECEIVE_READY = "RNBridgeReady";
+    String MODULE_SEND_CONFIGS = "RNBridgeConfigs";
 
 }

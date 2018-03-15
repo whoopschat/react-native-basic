@@ -1,20 +1,8 @@
 'use strict';
+import {Platform} from "react-native";
 
+const config = {};
 let init = false;
-let config = {
-  init: false
-};
-
-const initConfig = (baseConfigs, prodConfigs = {}, devConfigs = {}) => {
-  config = Object.assign({}, {
-    prod: Object.assign({}, baseConfigs, prodConfigs),
-    dev: Object.assign({}, baseConfigs, devConfigs)
-  });
-};
-
-///////////////////////////////////////////////////////////////////////
-/////// initConfig
-///////////////////////////////////////////////////////////////////////
 
 const getConfigForResources = (env) => {
   if (Resources !== undefined
@@ -27,7 +15,7 @@ const getConfigForResources = (env) => {
 };
 
 ///////////////////////////////////////////////////////////////////////
-/////// export
+/////// Export
 ///////////////////////////////////////////////////////////////////////
 
 const isProd = () => {
@@ -36,22 +24,26 @@ const isProd = () => {
 
 const getConfig = (key, def) => {
   if (!init) {
-    initConfig(Object.assign(getConfigForResources('config_base'), getConfigForResources('config_' + Build.OS)),
-      getConfigForResources('config_prod'),
-      getConfigForResources('config_dev'));
+    const env = isProd() ? 'prod' : 'dev';
+    const defaultConfig = Object.assign({},
+      getConfigForResources('config_base'),
+      getConfigForResources('config_' + Platform.OS),
+      getConfigForResources('config_' + env));
+    Object.assign(config, defaultConfig);
     init = true;
   }
-  const env = isProd() ? 'prod' : 'dev';
-  if (config.hasOwnProperty(env) && config[env].hasOwnProperty(key)) {
-    return config[env][key];
+  if (config.hasOwnProperty(key)) {
+    return config[key];
   }
   return def;
 };
 
-const setConfig = (options) => {
-  Object.assign(config, options);
+const setConfigs = (options) => {
+  if (typeof options === 'object') {
+    Object.assign(config, options);
+  }
 };
 
 export default {
-  isProd, getConfig, setConfig
+  isProd, getConfig, setConfigs
 };

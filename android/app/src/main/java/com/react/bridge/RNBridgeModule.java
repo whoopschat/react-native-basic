@@ -43,6 +43,10 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
         }
     }
 
+    public static void postConfigs(Map<String, Object> data) {
+        postSticky(RNBridgeConstants.MODULE_SEND_CONFIGS, data);
+    }
+
     public static void postSticky(String type, Map<String, Object> data) {
         if (data == null) {
             data = new HashMap<>();
@@ -78,8 +82,9 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void send(String type, ReadableMap data, Promise promise) {
-        if (type.equals(RNBridgeConstants.MODULE_READY)) {
+    // handler rn message
+    public void handleJsEvent(String type, ReadableMap data, Promise promise) {
+        if (type.equals(RNBridgeConstants.MODULE_RECEIVE_READY)) {
             mReady = true;
             for (int i = 0; i < mPendingEvents.size(); i++) {
                 handlePendingSendNativeEventWith(mPendingEvents.get(i));

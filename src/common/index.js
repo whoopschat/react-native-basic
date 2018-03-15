@@ -14,14 +14,20 @@ import Http from './services/http';
 import Navigation from './services/navigation';
 // components
 import BaseComponent from './components/base';
-// react-native
-import {Platform} from "react-native";
 
-// config
+// init locales
 Locales.config('zh');
 
+// init bridge
+Bridge.listener("RNBridgeConfigs", data => {
+  if (typeof data === 'object') {
+    Configs.setConfigs(data)
+  }
+});
+Bridge.ready();
+
 ////////////////////////////////////////////////////////
-//////// Global
+//////// set Global
 ////////////////////////////////////////////////////////
 
 // modules
@@ -37,7 +43,3 @@ global.Store = Store;
 global.Http = Http;
 // components
 global.BaseComponent = BaseComponent;
-// react-native
-global.Build = {
-  OS: Platform.OS
-};
