@@ -1,11 +1,13 @@
 'use strict';
 
-import {StackNavigator, TabNavigator, withNavigation} from 'react-navigation';
+import {StackNavigator, TabNavigator} from 'react-navigation';
 
 class NavigatorProxy {
 
-  constructor(navigation) {
+  constructor(navigation, uriPrefix, router) {
     this.navigation = navigation;
+    this.uriPrefix = uriPrefix;
+    this.router = router;
   }
 
   dispatch(action) {
@@ -29,6 +31,25 @@ class NavigatorProxy {
       && this.navigation.hasOwnProperty('push')) {
       const {push} = this.navigation;
       push(name, params, action);
+    }
+  }
+
+  link(url) {
+    if (this.router != null
+      && this.router.hasOwnProperty('getActionForPathAndParams')) {
+      const {getActionForPathAndParams} = this.router;
+      const params = {};
+      const delimiter = this.uriPrefix || '://';
+      let path = url.split(delimiter)[1];
+      if (typeof path === 'undefined') {
+        path = url;
+      } else if (path === '') {
+        path = '/';
+      }
+      const action = getActionForPathAndParams(path, params);
+      if (action) {
+        this.dispatch(action);
+      }
     }
   }
 
@@ -73,14 +94,6 @@ class NavigatorProxy {
       popToTop(params);
     }
   }
-
-  addListener(type, payload) {
-    if (this.navigation !== null
-      && this.navigation.hasOwnProperty('addListener')) {
-      const {addListener} = this.navigation;
-      return addListener(type, payload);
-    }
-  }
 }
 
 /////////////////////////////////////////////////
@@ -94,65 +107,57 @@ const createRootNavigator = (routeConfigMap, stackConfig = {}) => {
     render() {
       const superRender = super.render();
       navigator.navigation = this.props.navigation || this._navigation;
+      navigator.uriPrefix = this.props.uriPrefix || '://';
       return superRender;
     }
   }
 
+  navigator.router = AppRootNavigator.router;
   return AppRootNavigator
 };
 
 const createTabNavigator = (routeConfigMap, config = {}) => {
   class AppTabNavigator extends TabNavigator(routeConfigMap, config) {
-    render() {
-      const superRender = super.render();
-      navigator.navigation = this.props.navigation || this._navigation;
-      return superRender;
-    }
   }
 
   return AppTabNavigator
-};
-
-const navigate = (name, params = {}, action) => {
-  navigator.navigate(name, params, action)
 };
 
 const dispatch = (action) => {
   navigator.dispatch(action)
 };
 
+const navigate = (name, params = {}, action) => {
+  navigator.navigate(name, params, action)
+};
+
 const push = (name, params = {}, action) => {
   navigator.push(name, params, action)
 };
 
-const back = () => {
-  navigator.back()
+const link = (uri) => {
+  navigator.link(uri)
 };
 
 const pop = (n) => {
   navigator.pop(n)
 };
 
-const popToTop = () => {
-  navigator.popToTop()
-};
-
 const popTo = (name) => {
   navigator.popTo(name)
 };
 
-const withNavigationProxy = (screen) => {
-  withNavigation(screen);
+const popToTop = () => {
+  navigator.popToTop()
 };
 
 export default {
   createRootNavigator,
   createTabNavigator,
-  withNavigation: withNavigationProxy,
   navigate,
   dispatch,
   push,
-  back,
+  link,
   pop,
   popToTop,
   popTo
