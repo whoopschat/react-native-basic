@@ -9,6 +9,12 @@ if exist ../android/app/build (
     rd /q /s "../android/app/build"
 )
 
+:: clean assets file
+
+if exist "..\android\app\src\main\assets\react\*" (
+    del /q /s "..\android\app\src\main\assets\react\*"
+)
+
 :: clean res file
 
 if exist "..\android\app\src\main\res\drawable-mdpi\src_res_*.*" (
