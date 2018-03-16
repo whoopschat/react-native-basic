@@ -6,9 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "clean": "cd scripts&clean",
-    "package-ios": "cd scripts&package-ios-app",
-    "package-android": "cd scripts&package-android-app",
+    "bundle-android": "node scripts/bundle-android.js",
+    "bundle-ios": "node scripts/bundle-ios.js",
     "test": "jest"
   },
   "dependencies": {
