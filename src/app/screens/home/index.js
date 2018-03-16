@@ -20,7 +20,7 @@ class HomeScreen extends BaseComponent {
   render() {
     return (
       <View style={styles.container}>
-        <Text>HomeScreen {Configs.getConfig("device_id","null")}
+        <Text>HomeScreen {Configs.getConfig("device_id", "null")}
           -> {this.navIsFocused() ? 'Focused' : 'unFocused'} -> {this.navGetParam('name', 'Null Name')}\n {this.props.loginSelector}</Text>
         <Image style={styles.imageStyle} source={Resources.assets.watermark}/>
         <Button

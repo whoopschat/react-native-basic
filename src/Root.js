@@ -9,6 +9,7 @@ import AppNavigator from './app/navigator';
 const prefix = Configs.getConfig('DEEP_LINK_PREFIX', '');
 
 export default class Root extends Component {
+
   render() {
     return (
       <Provider store={Store.configure(Reducers)}>
