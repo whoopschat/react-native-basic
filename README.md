@@ -7,7 +7,7 @@ a react native client basic
     - `vscode` + Extensions: `EditorConfig`, `ESLint`, `React Native Tools`
     - `React Native Debugger`
 * make sure `node` is installed, node v9.5.0 is tested, use [n](https://github.com/tj/n) to manage node version
-* run `npm install` or `yarn install` to install dependencies
+* run `yarn install` or `npm install` to install dependencies
 * run `npm run ios` to start debug with iOS Simulator
 * start Android emulator and run `npm run android` to start debug with android emulator
 * run `npm run test` for basic test
@@ -15,8 +15,8 @@ a react native client basic
     - launch `React Native Debugger`
     - press `Cmd+D` on iOS/`Cmd+M` on Android for dev menu
     - select `Start Remote JS Debugging`
-* run `npm run build-ios` to build ios js bundle
-* run `npm run build-android` to build android js bundle
+* run `npm run package-ios` to build ios js bundle
+* run `npm run package-android` to build android js bundle
 
 ## Folder Structure
 

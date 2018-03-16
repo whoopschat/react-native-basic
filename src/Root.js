@@ -1,6 +1,6 @@
 'use strict';
 
-import './common';
+import './common/index';
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import Reducers from './app/reducers';
