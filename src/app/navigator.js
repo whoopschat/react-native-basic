@@ -3,4 +3,4 @@
 import React from 'react';
 import {RouteMaps, RouteOptions} from "./routers/routers";
 
-export default Navigation.createRootNavigator(RouteMaps, RouteOptions);
+export default Navigation.createGlobalNavigator(RouteMaps, RouteOptions);

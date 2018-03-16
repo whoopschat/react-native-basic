@@ -116,7 +116,7 @@ class NavigatorProxy {
 
 const navigator = new NavigatorProxy(null);
 
-const createRootNavigator = (routeConfigMap, stackConfig = {}) => {
+const createGlobalNavigator = (routeConfigMap, stackConfig = {}) => {
   class AppRootNavigator extends StackNavigator(routeConfigMap, stackConfig) {
 
     constructor(props) {
@@ -137,15 +137,33 @@ const createRootNavigator = (routeConfigMap, stackConfig = {}) => {
 
 const createStackNavigator = (routeConfigMap, stackConfig = {}) => {
   class AppStackNavigator extends StackNavigator(routeConfigMap, stackConfig) {
+    static navigator = new NavigatorProxy(null);
+
+    render() {
+      const superRender = super.render();
+      AppStackNavigator.navigator.navigation = this.props.navigation || this._navigation;
+      AppStackNavigator.navigator.uriPrefix = this.props.uriPrefix || '://';
+      return superRender;
+    }
   }
 
+  AppStackNavigator.navigator.router = AppStackNavigator.router;
   return AppStackNavigator;
 };
 
 const createTabNavigator = (routeConfigMap, config = {}) => {
   class AppTabNavigator extends TabNavigator(routeConfigMap, config) {
+    static navigator = new NavigatorProxy(null);
+
+    render() {
+      const superRender = super.render();
+      AppTabNavigator.navigator.navigation = this.props.navigation || this._navigation;
+      AppTabNavigator.navigator.uriPrefix = this.props.uriPrefix || '://';
+      return superRender;
+    }
   }
 
+  AppTabNavigator.navigator.router = AppTabNavigator.router;
   return AppTabNavigator;
 };
 
@@ -178,7 +196,7 @@ const popToTop = () => {
 };
 
 export default {
-  createRootNavigator,
+  createGlobalNavigator,
   createStackNavigator,
   createTabNavigator,
   navigate,
