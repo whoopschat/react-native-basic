@@ -4,6 +4,7 @@ import {StackNavigator, TabNavigator} from 'react-navigation';
 
 class NavigatorProxy {
 
+
   constructor(navigation, uriPrefix, router) {
     this.navigation = navigation;
     this.uriPrefix = uriPrefix;
@@ -40,11 +41,24 @@ class NavigatorProxy {
       const {getActionForPathAndParams} = this.router;
       const params = {};
       const delimiter = this.uriPrefix || '://';
-      let path = url.split(delimiter)[1];
-      if (typeof path === 'undefined') {
-        path = url;
-      } else if (path === '') {
-        path = '/';
+      const urlSplit = url.split(delimiter);
+      let path = '/';
+      if (urlSplit.length > 1) {
+        const pathSplit = urlSplit[1].split('?');
+        path = pathSplit[0];
+        if (pathSplit.length > 1) {
+          const paramsSplit = pathSplit[1].split('&');
+          paramsSplit.forEach(value => {
+            const param = value.split('=');
+            if (param.length === 2) {
+              Object.assign(params, {
+                [param[0]]: param[1]
+              })
+            }
+          })
+        }
+      } else {
+        path = url
       }
       const action = getActionForPathAndParams(path, params);
       if (action) {
@@ -73,7 +87,7 @@ class NavigatorProxy {
           state.routes.forEach((route, index) => {
             if (route.routeName === name) {
               targetIndex = index + 1;
-              throw new Error("stopForEach")
+              throw new Error("findRoute")
             }
           });
         } catch (e) {
@@ -104,6 +118,11 @@ const navigator = new NavigatorProxy(null);
 
 const createRootNavigator = (routeConfigMap, stackConfig = {}) => {
   class AppRootNavigator extends StackNavigator(routeConfigMap, stackConfig) {
+
+    constructor(props) {
+      super(props);
+    }
+
     render() {
       const superRender = super.render();
       navigator.navigation = this.props.navigation || this._navigation;
@@ -113,14 +132,21 @@ const createRootNavigator = (routeConfigMap, stackConfig = {}) => {
   }
 
   navigator.router = AppRootNavigator.router;
-  return AppRootNavigator
+  return AppRootNavigator;
+};
+
+const createStackNavigator = (routeConfigMap, stackConfig = {}) => {
+  class AppStackNavigator extends StackNavigator(routeConfigMap, stackConfig) {
+  }
+
+  return AppStackNavigator;
 };
 
 const createTabNavigator = (routeConfigMap, config = {}) => {
   class AppTabNavigator extends TabNavigator(routeConfigMap, config) {
   }
 
-  return AppTabNavigator
+  return AppTabNavigator;
 };
 
 const dispatch = (action) => {
@@ -153,6 +179,7 @@ const popToTop = () => {
 
 export default {
   createRootNavigator,
+  createStackNavigator,
   createTabNavigator,
   navigate,
   dispatch,

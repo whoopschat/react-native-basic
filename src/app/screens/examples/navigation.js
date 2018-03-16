@@ -31,7 +31,7 @@ export default class NavigationScreen extends BaseComponent {
         <Button
           onPress={() => {
             Navigation.popTo(RouteNames.Main);
-            Navigation.link("router://rn/center/1111111")
+            Navigation.link("router://rn/center/1111111/?age=22222222")
             // Navigation.navigate(RouteNames.Center,{name:'---------'})
           }
           }
