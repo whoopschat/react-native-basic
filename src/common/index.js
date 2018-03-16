@@ -1,8 +1,6 @@
 'use strict';
 
 import './services/prototype';
-// modules
-import Bridge from './modules/bridge';
 // resources
 import Resources from './resources/resources';
 import Locales from './resources/locales';
@@ -12,6 +10,7 @@ import Logger from './services/logger';
 import Store from './services/store';
 import Http from './services/http';
 import Navigation from './services/navigation';
+import Bridge from './services/bridge';
 // components
 import BaseComponent from './components/base';
 
@@ -31,15 +30,15 @@ Bridge.ready();
 ////////////////////////////////////////////////////////
 
 // modules
-global.Bridge = Bridge;
 // resources
 global.Resources = Resources;
 global.Locales = Locales;
 global.Configs = Configs;
 // services
-global.Navigation = Navigation;
 global.Logger = Logger;
 global.Store = Store;
 global.Http = Http;
+global.Navigation = Navigation;
+global.Bridge = Bridge;
 // components
 global.BaseComponent = BaseComponent;
