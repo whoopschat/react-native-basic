@@ -85,5 +85,7 @@ const createBridge = () => {
   }
 };
 
-export default createBridge();
+const bridge = createBridge();
+
+export default bridge;
 
