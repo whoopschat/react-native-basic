@@ -2,7 +2,15 @@
 
 const defaultTimeout = 10000;
 
-const getDefaultOpts = (contentType) => {
+const getBaseUrl = () => {
+  return Configs.getConfig('API_SERVER');
+};
+
+const getBaseHeaders = () => {
+  return Configs.getConfig('API_HEADERS', {});
+};
+
+const getBaseDefaultOpts = (contentType) => {
   return {
     headers: {
       'Content-Type': contentType || 'application/x-www-form-urlencoded'
@@ -15,30 +23,36 @@ const getDefaultOpts = (contentType) => {
 ///////////////////////////////////////
 
 export const getAPI = (path, params, opts = {}, timeout = defaultTimeout) => {
-  const newOpts = Http.createOptions(getDefaultOpts(), {
-    headers: Configs.getConfig('API_HEADERS', {})
+  const requestOpts = Http.createOptions(getBaseDefaultOpts(), {
+    headers: getBaseHeaders()
   }, opts);
-  return Http.get(`${Configs.getConfig('API_SERVER')}${path}`, params, newOpts, timeout);
+  return Http.get(`${getBaseUrl()}${path}`, params, requestOpts, timeout);
 };
 
 export const deleteAPI = (path, params, opts = {}, timeout = defaultTimeout) => {
-  const newOpts = Http.createOptions(getDefaultOpts(), {
-    headers: Configs.getConfig('API_HEADERS', {})
+  const requestOpts = Http.createOptions(getBaseDefaultOpts(), {
+    headers: getBaseHeaders()
   }, opts);
-  return Http.del(`${Configs.getConfig('API_SERVER')}${path}`, params, newOpts, timeout);
+  return Http.del(`${getBaseUrl()}${path}`, params, requestOpts, timeout);
 };
 
 export const putAPI = (path, params, opts = {}, timeout = defaultTimeout) => {
-  const newOpts = Http.createOptions(getDefaultOpts(), {
-    headers: Configs.getConfig('API_HEADERS', {})
+  const requestOpts = Http.createOptions(getBaseDefaultOpts(), {
+    headers: getBaseHeaders()
   }, opts);
-  return Http.put(`${Configs.getConfig('API_SERVER')}${path}`, params, newOpts, timeout);
+  return Http.put(`${getBaseUrl()}${path}`, params, requestOpts, timeout);
 };
 
 export const postAPI = (path, params, opts = {}, timeout = defaultTimeout) => {
-  const newOpts = Http.createOptions( getDefaultOpts(), {
-    headers: Configs.getConfig('API_HEADERS', {})
+  const requestOpts = Http.createOptions(getBaseDefaultOpts(), {
+    headers: getBaseHeaders()
   }, opts);
-  return Http.post(`${Configs.getConfig('API_SERVER')}${path}`, params, newOpts, timeout);
+  return Http.post(`${getBaseUrl()}${path}`, params, requestOpts, timeout);
 };
 
+export const formAPI = (path, params, opts = {}, timeout = defaultTimeout) => {
+  const requestOpts = Http.createOptions(getBaseDefaultOpts(), {
+    headers: getBaseHeaders()
+  }, opts);
+  return Http.form(`${getBaseUrl()}${path}`, params, requestOpts, timeout);
+};
