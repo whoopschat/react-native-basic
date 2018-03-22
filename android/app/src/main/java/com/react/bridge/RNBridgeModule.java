@@ -95,7 +95,7 @@ public class RNBridgeModule extends ReactContextBaseJavaModule {
             }
         }
         RNBridgeHandler handler = HANDLERS.get(type);
-        if (handler != null) {
+        if (handler != null && getCurrentActivity() != null) {
             handler.handle(getCurrentActivity(), type, data == null ? new HashMap<String, Object>() : data.toHashMap(), new PromiseProxy(promise));
         } else {
             promise.resolve(null);
