@@ -1,5 +1,5 @@
 # React Native Basic
-> An react native client basic
+> An React-Native Client Basic
 
 ## Get Started
 
