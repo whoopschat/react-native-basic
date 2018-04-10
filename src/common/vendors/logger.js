@@ -1,4 +1,8 @@
 'use strict';
+/** ---------------------------------------
+ *  Logger.js
+ --------------------------------------- **/
+
 const isProd = process.env.NODE_ENV === 'production';
 
 const LOG_LEVELS = {

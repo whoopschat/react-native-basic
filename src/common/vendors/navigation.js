@@ -1,9 +1,10 @@
 'use strict';
-
+/** ====================================
+ *  Navigation,js
+ =======================================*/
 import {StackNavigator, TabNavigator} from 'react-navigation';
 
 class NavigatorProxy {
-
 
   constructor(navigation, uriPrefix, router) {
     this.navigation = navigation;

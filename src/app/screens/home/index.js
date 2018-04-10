@@ -15,16 +15,16 @@ const styles = StyleSheet.create({
   }
 });
 
-class HomeScreen extends BaseComponent {
+class HomeScreen extends Activity {
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>HomeScreen {this.navIsFocused() ? 'Focused' : 'unFocused'} -> {this.navGetParam('name', 'Null Name')}\n {this.props.loginSelector}</Text>
+        <Text>HomeScreen {this.pageIsFocused() ? 'Focused' : 'unFocused'} -> {this.pageGetParam('name', 'Null Name')}\n {this.props.loginSelector}</Text>
         <Image style={styles.imageStyle} source={Resources.assets.watermark}/>
         <Button
           onPress={() => {
-            Navigation.navigate(RouteNames.Center);
+            this.pageNavigate(RouteNames.Center);
           }}
           title='Navigation Page'
           color='#841584'

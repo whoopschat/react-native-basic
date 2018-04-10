@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Text, View} from 'react-native';
 import {demoGetApi} from '../../fetch/demo';
 
-export default class MeScreen extends BaseComponent {
+export default class MeScreen extends Activity {
 
   constructor(props) {
     super(props);

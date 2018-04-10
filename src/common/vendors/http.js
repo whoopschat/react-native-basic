@@ -1,6 +1,14 @@
 'use strict';
+/** ---------------------------------------
+ *  Http,js
+ --------------------------------------- **/
 
-const paramBody = (params) => {
+/**
+ * queryString
+ * @param params params
+ * @returns {string}
+ */
+const queryString = (params) => {
   let queryString = Object
   .entries(params)
   .map(entry => `${entry[0]}=${encodeURIComponent(entry[1])}`)
@@ -11,7 +19,12 @@ const paramBody = (params) => {
   return queryString;
 };
 
-const checkJson = (str) => {
+/**
+ * check is json
+ * @param str context
+ * @returns {*}
+ */
+const checkIsJson = (str) => {
   if (typeof str === 'string') {
     try {
       let obj = JSON.parse(str);
@@ -30,12 +43,19 @@ const checkJson = (str) => {
   };
 };
 
+/**
+ * handleRequest
+ * @param url url
+ * @param opts opts
+ * @param timeout timeout
+ * @returns {Promise<any>}
+ */
 const handleRequest = (url, opts, timeout = 30000) => {
   const requestTimeout = timeout;
   const requestPromise = fetch(url, opts).then(res => {
     let status = res.status;
     return res.text().then(function (text) {
-      const json = checkJson(text);
+      const json = checkIsJson(text);
       return {
         success: true,
         status: status,
@@ -100,9 +120,9 @@ const margeOptions = (opt1, opt2) => {
   return resultOpt;
 };
 
-////////////////////////////////////////////////////////////////
-//////  export
-////////////////////////////////////////////////////////////////
+// ------------------------------------------------
+// export
+// ------------------------------------------------
 
 const createOptions = (...opts) => {
   let returnOpts = {
@@ -125,7 +145,7 @@ const get = (url, params = {}, opts = {}, timeout) => {
   } else {
     connector = '&';
   }
-  return handleRequest(url + connector + paramBody(params), Object.assign({}, opts, {method: 'GET'}), timeout);
+  return handleRequest(url + connector + queryString(params), Object.assign({}, opts, {method: 'GET'}), timeout);
 };
 
 const del = (url, params = {}, opts = {}, timeout) => {
@@ -135,7 +155,7 @@ const del = (url, params = {}, opts = {}, timeout) => {
   } else {
     connector = '&';
   }
-  return handleRequest(url + connector + paramBody(params), Object.assign({}, opts, {method: 'DELETE'}), timeout);
+  return handleRequest(url + connector + queryString(params), Object.assign({}, opts, {method: 'DELETE'}), timeout);
 };
 
 const post = (url, params = {}, opts = {}, timeout) => {
@@ -143,7 +163,7 @@ const post = (url, params = {}, opts = {}, timeout) => {
   if (opts['headers']['Content-Type'] === 'application/json') {
     body = JSON.stringify(params);
   } else {
-    body = paramBody(params);
+    body = queryString(params);
   }
   return handleRequest(url, Object.assign({}, opts, {method: 'POST', body: body}), timeout);
 };
@@ -153,7 +173,7 @@ const put = (url, params = {}, opts = {}, timeout) => {
   if (opts['headers']['Content-Type'] === 'application/json') {
     body = JSON.stringify(params);
   } else {
-    body = paramBody(params);
+    body = queryString(params);
   }
   return handleRequest(url, Object.assign({}, opts, {method: 'PUT', body: body}), timeout);
 };

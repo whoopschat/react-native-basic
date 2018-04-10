@@ -1,8 +1,10 @@
 'use strict';
-
+/** ---------------------------------------
+ *  Activity.js
+ ---------------------------------------**/
 import React from 'react';
 
-export default class BaseComponent extends React.Component {
+export default class Activity extends React.Component {
 
   static connect = function (state, actions) {
     return Store.connect(this, state, actions);
@@ -10,6 +12,10 @@ export default class BaseComponent extends React.Component {
 
   constructor(props) {
     super(props);
+  }
+
+  invalidate(state = {}, callback) {
+    this.setState(state || {}, callback);
   }
 
   dispatch(action) {
@@ -20,15 +26,11 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  invalidate(state = {}, callback) {
-    this.setState(state || {}, callback);
-  }
+  // --------------------------------------
+  // react-navigation
+  // --------------------------------------
 
-  /////////////////////////////////////////
-  ///////// Navigation
-  /////////////////////////////////////////
-
-  navDispatch(action) {
+  pageDispatch(action) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('dispatch')) {
       const {dispatch} = this.props.navigation;
@@ -36,7 +38,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navNavigate(name, params = {}, action) {
+  pageNavigate(name, params = {}, action) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('navigate')) {
       const {navigate} = this.props.navigation;
@@ -44,7 +46,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navPush(name, params = {}, action) {
+  pagePush(name, params = {}, action) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('push')) {
       const {push} = this.props.navigation;
@@ -52,7 +54,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navGoBack(key) {
+  pageGoBack(key) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('goBack')) {
       const {goBack} = this.props.navigation;
@@ -60,7 +62,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navPop(n) {
+  pagePop(n) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('pop')) {
       const {pop} = this.props.navigation;
@@ -68,7 +70,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navPopToTop() {
+  pagePopToTop() {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('popToTop')) {
       const {popToTop} = this.props.navigation;
@@ -76,7 +78,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navGetParam(paramName, defaultValue) {
+  pageGetParam(paramName, defaultValue) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('getParam')) {
       const {getParam} = this.props.navigation;
@@ -84,7 +86,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navSetParams(params = {}) {
+  pageSetParams(params = {}) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('setParams')) {
       const {setParams} = this.props.navigation;
@@ -92,7 +94,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navReplace(name, params = {}, action) {
+  pageReplace(name, params = {}, action) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('replace')) {
       const {replace} = this.props.navigation;
@@ -100,7 +102,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navIsFocused() {
+  pageIsFocused() {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('isFocused')) {
       const {isFocused} = this.props.navigation;
@@ -108,7 +110,7 @@ export default class BaseComponent extends React.Component {
     }
   }
 
-  navAddListener(type, payload) {
+  pageAddListener(type, payload) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('addListener')) {
       const {addListener} = this.props.navigation;

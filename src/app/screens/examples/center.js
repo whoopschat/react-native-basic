@@ -3,13 +3,13 @@ import {Button, Text, View} from 'react-native'
 import {login} from '../../redux/actions/login';
 import {RouteNames} from '../../routers/routers';
 
-class CenterScreen extends BaseComponent {
+class CenterScreen extends Activity {
 
 
   render() {
     return (
       <View>
-        <Text>{this.navGetParam('name', 'CenterScreen')} {this.navGetParam('age', '33')} {JSON.stringify(this.state) || ''} {this.props.login.status || '------------------'} {this.props.demo.status || '------------------'}</Text>
+        <Text>{this.pageGetParam('name', 'CenterScreen')} {this.pageGetParam('age', '33')} {JSON.stringify(this.state) || ''} {this.props.login.status || '------------------'} {this.props.demo.status || '------------------'}</Text>
         <Button
           onPress={() => {
             this.dispatch(login());

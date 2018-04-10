@@ -2,20 +2,18 @@
 
 import './vendors/prototype';
 // resources
-import Resources from '../common/resources/resources';
-import Locales from '../common/resources/locales';
-import Configs from '../common/resources/configs'
+import Resources from './res/resources';
+import Locales from './vendors/locales';
+import Configs from './vendors/configs'
 // vendors
+import UUID from './vendors/uuid';
 import Logger from './vendors/logger';
+import Platform from './vendors/platform';
 import Store from './vendors/store';
 import Http from './vendors/http';
 import Navigation from './vendors/navigation';
 import Bridge from './vendors/bridge';
-// components
-import BaseComponent from '../common/components/base';
-
-// init locales
-Locales.config('zh');
+import Activity from './vendors/activity';
 
 // init bridge
 Bridge.listener("RNBridgeConfigs", data => {
@@ -26,19 +24,19 @@ Bridge.listener("RNBridgeConfigs", data => {
 Bridge.ready();
 
 ////////////////////////////////////////////////////////
-//////// set Global
+//////// init Global
 ////////////////////////////////////////////////////////
 
-// modules
 // resources
 global.Resources = Resources;
+// vendors
+global.UUID = UUID;
+global.Device = Platform;
 global.Locales = Locales;
 global.Configs = Configs;
-// vendors
 global.Logger = Logger;
 global.Store = Store;
 global.Http = Http;
 global.Navigation = Navigation;
 global.Bridge = Bridge;
-// components
-global.BaseComponent = BaseComponent;
+global.Activity = Activity;

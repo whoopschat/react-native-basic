@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Text, View} from 'react-native'
 import {RouteNames} from "../../routers/routers";
 
-export default class NavigationScreen extends BaseComponent {
+export default class NavigationScreen extends Activity {
 
   constructor(props) {
     super(props)
@@ -11,18 +11,18 @@ export default class NavigationScreen extends BaseComponent {
   render() {
     return (
       <View>
-        <Text>Name : {this.navGetParam('name', 'NavigationScreen')}</Text>
+        <Text>Name : {this.pageGetParam('name', 'NavigationScreen')}</Text>
         <Button
           onPress={() =>
-            this.navSetParams({name: 'New Name'})
+            this.setParams({name: 'New Name'})
           }
           title='Change Name'
           color='#841584'
         />
-        <Text>age : {this.navGetParam('age', '100')}</Text>
+        <Text>age : {this.pageGetParam('age', '100')}</Text>
         <Button
           onPress={() =>
-            this.navSetParams({age: 69})
+            this.pageSetParams({age: 69})
           }
           title='Change Age'
           color='#841584'
