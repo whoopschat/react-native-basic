@@ -10,7 +10,7 @@ class NavigatorProxy {
     this.router = router;
   }
 
-  public dispatch(action) {
+  dispatch(action) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('dispatch')) {
       const {dispatch} = this.navigation;
@@ -18,7 +18,7 @@ class NavigatorProxy {
     }
   }
 
-  public navigate(name, params = {}, action) {
+  navigate(name, params = {}, action) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('navigate')) {
       const {navigate} = this.navigation;
@@ -26,7 +26,7 @@ class NavigatorProxy {
     }
   }
 
-  public push(name, params = {}, action) {
+  push(name, params = {}, action) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('push')) {
       const {push} = this.navigation;
@@ -34,7 +34,7 @@ class NavigatorProxy {
     }
   }
 
-  public link(url) {
+  link(url) {
     if (this.router != null
       && this.router.hasOwnProperty('getActionForPathAndParams')) {
       const {getActionForPathAndParams} = this.router;
@@ -66,7 +66,7 @@ class NavigatorProxy {
     }
   }
 
-  public pop(n, params) {
+  pop(n, params) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('pop')) {
       const {pop} = this.navigation;
@@ -74,7 +74,7 @@ class NavigatorProxy {
     }
   }
 
-  public popTo(name) {
+  popTo(name) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('state')
       && this.navigation.state.hasOwnProperty('routes')) {
@@ -100,7 +100,7 @@ class NavigatorProxy {
     }
   }
 
-  public popToTop(params) {
+  popToTop(params) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('popToTop')) {
       const {popToTop} = this.navigation;
