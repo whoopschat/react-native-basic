@@ -63,11 +63,11 @@ export default class Activity extends React.Component {
     }
   }
 
-  pagePop(n: number) {
+  pagePop(number) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('pop')) {
       const {pop} = this.props.navigation;
-      pop(n);
+      pop(number);
     }
   }
 

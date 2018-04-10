@@ -29,7 +29,7 @@ export default class NavigationScreen extends Activity {
         <Text>Action : popToTop</Text>
         <Button
           onPress={() => {
-            this.pageLink("router://rn/center/1111111/?age=2222222233333333333333");
+            this.pagePopToTop();
           }
           }
           title='POP TO TOP'
