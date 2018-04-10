@@ -8,6 +8,9 @@ export default {
 		device_android: require('../assets/configs/device.android.js'),
 		device_ios: require('../assets/configs/device.ios.js')
 	},
+	image: 	{
+		watermark: require('../assets/image/watermark.jpg')
+	},
 	locales: 	{
 		en: require('../assets/locales/en.js'),
 		zh: require('../assets/locales/zh.js')

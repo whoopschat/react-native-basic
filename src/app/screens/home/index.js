@@ -21,7 +21,7 @@ class HomeScreen extends Activity {
     return (
       <View style={styles.container}>
         <Text>HomeScreen {this.pageIsFocused() ? 'Focused' : 'unFocused'} -> {this.pageGetParam('name', 'Null Name')}\n {this.props.loginSelector}</Text>
-        <Image style={styles.imageStyle} source={Resources.assets.watermark}/>
+        <Image style={styles.imageStyle} source={Resources.image.watermark}/>
         <Button
           onPress={() => {
             this.pageNavigate(RouteNames.Center);

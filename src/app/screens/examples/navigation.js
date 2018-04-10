@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native'
-import {RouteNames} from "../../routers/routers";
 
 export default class NavigationScreen extends Activity {
 
@@ -14,7 +13,7 @@ export default class NavigationScreen extends Activity {
         <Text>Name : {this.pageGetParam('name', 'NavigationScreen')}</Text>
         <Button
           onPress={() =>
-            this.setParams({name: 'New Name'})
+            this.pageSetParams({name: 'New Name'})
           }
           title='Change Name'
           color='#841584'
@@ -30,9 +29,7 @@ export default class NavigationScreen extends Activity {
         <Text>Action : popToTop</Text>
         <Button
           onPress={() => {
-            Navigation.popTo(RouteNames.Main);
-            Navigation.link("router://rn/center/1111111/?age=22222222")
-            // Navigation.navigate(RouteNames.Center,{name:'---------'})
+            this.pageLink("router://rn/center/1111111/?age=2222222233333333333333");
           }
           }
           title='POP TO TOP'

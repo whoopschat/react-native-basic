@@ -2,13 +2,13 @@
 
 import './vendors/prototype';
 // resources
-import Resources from './res/resources';
+import Resources from './resources/resources';
 import Locales from './vendors/locales';
 import Configs from './vendors/configs'
 // vendors
 import UUID from './vendors/uuid';
 import Logger from './vendors/logger';
-import Platform from './vendors/platform';
+import Platform from './vendors/device';
 import Store from './vendors/store';
 import Http from './vendors/http';
 import Navigation from './vendors/navigation';

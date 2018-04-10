@@ -2,6 +2,7 @@
 /** ---------------------------------------
  *  Bridge.js
  ---------------------------------------**/
+
 import {DeviceEventEmitter, NativeEventEmitter, NativeModules, Platform,} from 'react-native';
 
 const bridgeModuleName = 'RNBridgeModule';

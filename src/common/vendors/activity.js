@@ -2,6 +2,7 @@
 /** ---------------------------------------
  *  Activity.js
  ---------------------------------------**/
+
 import React from 'react';
 
 export default class Activity extends React.Component {
@@ -62,7 +63,7 @@ export default class Activity extends React.Component {
     }
   }
 
-  pagePop(n) {
+  pagePop(n: number) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('pop')) {
       const {pop} = this.props.navigation;

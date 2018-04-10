@@ -13,7 +13,7 @@ class CenterScreen extends Activity {
         <Button
           onPress={() => {
             this.dispatch(login());
-            Navigation.navigate(RouteNames.Navigation, {name: 'callback'});
+            this.pageNavigate(RouteNames.Navigation, {name: 'callback'});
           }
           }
           title='Home Page'

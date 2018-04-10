@@ -1,7 +1,5 @@
 'use strict';
-/** ====================================
- *  Navigation,js
- =======================================*/
+
 import {StackNavigator, TabNavigator} from 'react-navigation';
 
 class NavigatorProxy {
@@ -12,7 +10,7 @@ class NavigatorProxy {
     this.router = router;
   }
 
-  dispatch(action) {
+  public dispatch(action) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('dispatch')) {
       const {dispatch} = this.navigation;
@@ -20,7 +18,7 @@ class NavigatorProxy {
     }
   }
 
-  navigate(name, params = {}, action) {
+  public navigate(name, params = {}, action) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('navigate')) {
       const {navigate} = this.navigation;
@@ -28,7 +26,7 @@ class NavigatorProxy {
     }
   }
 
-  push(name, params = {}, action) {
+  public push(name, params = {}, action) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('push')) {
       const {push} = this.navigation;
@@ -36,7 +34,7 @@ class NavigatorProxy {
     }
   }
 
-  link(url) {
+  public link(url) {
     if (this.router != null
       && this.router.hasOwnProperty('getActionForPathAndParams')) {
       const {getActionForPathAndParams} = this.router;
@@ -68,7 +66,7 @@ class NavigatorProxy {
     }
   }
 
-  pop(n, params) {
+  public pop(n, params) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('pop')) {
       const {pop} = this.navigation;
@@ -76,7 +74,7 @@ class NavigatorProxy {
     }
   }
 
-  popTo(name) {
+  public popTo(name) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('state')
       && this.navigation.state.hasOwnProperty('routes')) {
@@ -102,7 +100,7 @@ class NavigatorProxy {
     }
   }
 
-  popToTop(params) {
+  public popToTop(params) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('popToTop')) {
       const {popToTop} = this.navigation;
@@ -114,27 +112,6 @@ class NavigatorProxy {
 /////////////////////////////////////////////////
 //////// Export
 /////////////////////////////////////////////////
-
-const navigator = new NavigatorProxy(null);
-
-const createGlobalNavigator = (routeConfigMap, stackConfig = {}) => {
-  class AppRootNavigator extends StackNavigator(routeConfigMap, stackConfig) {
-
-    constructor(props) {
-      super(props);
-    }
-
-    render() {
-      const superRender = super.render();
-      navigator.navigation = this.props.navigation || this._navigation;
-      navigator.uriPrefix = this.props.uriPrefix || '://';
-      return superRender;
-    }
-  }
-
-  navigator.router = AppRootNavigator.router;
-  return AppRootNavigator;
-};
 
 const createStackNavigator = (routeConfigMap, stackConfig = {}) => {
   class AppStackNavigator extends StackNavigator(routeConfigMap, stackConfig) {
@@ -168,43 +145,7 @@ const createTabNavigator = (routeConfigMap, config = {}) => {
   return AppTabNavigator;
 };
 
-const dispatch = (action) => {
-  navigator.dispatch(action)
-};
-
-const navigate = (name, params = {}, action) => {
-  navigator.navigate(name, params, action)
-};
-
-const push = (name, params = {}, action) => {
-  navigator.push(name, params, action)
-};
-
-const link = (uri) => {
-  navigator.link(uri)
-};
-
-const pop = (n) => {
-  navigator.pop(n)
-};
-
-const popTo = (name) => {
-  navigator.popTo(name)
-};
-
-const popToTop = () => {
-  navigator.popToTop()
-};
-
 export default {
-  createGlobalNavigator,
   createStackNavigator,
-  createTabNavigator,
-  navigate,
-  dispatch,
-  push,
-  link,
-  pop,
-  popToTop,
-  popTo
+  createTabNavigator
 }

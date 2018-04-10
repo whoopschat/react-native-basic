@@ -2,6 +2,7 @@
 /** --------------------------------------
  *  Device.js
  -------------------------------------- **/
+
 import {Platform} from "react-native";
 
 export default {
