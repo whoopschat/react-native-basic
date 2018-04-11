@@ -1,4 +1,9 @@
 'use strict';
+/** ----------------------------------------
+ *  Common module
+ *  ---------------
+ *  navigation.js
+ ---------------------------------------- **/
 
 import {StackNavigator, TabNavigator} from 'react-navigation';
 
@@ -93,7 +98,7 @@ class NavigatorProxy {
         }
         if (targetIndex >= 0) {
           const n = totalRoutes - targetIndex;
-          pop(n);
+          this.pop(n);
         }
       } catch (e) {
       }
@@ -107,6 +112,7 @@ class NavigatorProxy {
       popToTop(params);
     }
   }
+
 }
 
 /////////////////////////////////////////////////

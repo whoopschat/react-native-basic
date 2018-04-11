@@ -1,6 +1,8 @@
 'use strict';
 /** ---------------------------------------
- *  Activity.js
+ *  Common module
+ *  ---------------
+ *  activity.js
  ---------------------------------------**/
 
 import React from 'react';

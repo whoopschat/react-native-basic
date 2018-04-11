@@ -1,9 +1,9 @@
 'use strict';
 
 // RouteMaps
-import MainScreen from "../screens/main";
-import NavigationScreen from "../screens/examples/navigation";
-import CenterScreen from "../screens/examples/center";
+import MainScreen from "./screens/main";
+import NavigationScreen from "./screens/examples/navigation";
+import CenterScreen from "./screens/examples/center";
 
 ///////////////////////////////////////////////
 /////// export
@@ -16,8 +16,8 @@ export const RouteNames = Object.freeze({
   Center: 'Center',
 });
 
-// RouteMaps
-export const RouteMaps = {
+// routeMaps
+const routeMaps = {
   [RouteNames.Main]: {
     screen: MainScreen,
     navigationOptions: {
@@ -39,6 +39,11 @@ export const RouteMaps = {
   }
 };
 
-export const RouteOptions = {
+const routeOptions = {
   initialRouteName: RouteNames.Main,
 };
+
+export default {
+  map: routeMaps,
+  options: routeOptions
+}

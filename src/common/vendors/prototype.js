@@ -1,6 +1,8 @@
 'use strict';
 /** ----------------------------------------
- *  Prototype,js
+ *  Common module
+ *  ---------------
+ *  prototype,js
  ---------------------------------------- **/
 
 const usePrototype = () => {

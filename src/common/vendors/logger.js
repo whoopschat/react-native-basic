@@ -1,6 +1,8 @@
 'use strict';
 /** ---------------------------------------
- *  Logger.js
+ *  Common module
+ *  ---------------
+ *  logger.js
  --------------------------------------- **/
 
 const isProd = process.env.NODE_ENV === 'production';

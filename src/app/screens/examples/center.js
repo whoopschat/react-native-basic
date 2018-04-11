@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native'
 import {login} from '../../redux/actions/login';
-import {RouteNames} from '../../routers/routers';
+import {RouteNames} from '../../routers';
 
 class CenterScreen extends Activity {
 

@@ -1,6 +1,8 @@
 'use strict';
 /** --------------------------------------
- *  Device.js
+ *  Common module
+ *  ---------------
+ *  device.js
  -------------------------------------- **/
 
 import {Platform} from "react-native";

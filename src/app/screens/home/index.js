@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Image, StyleSheet, Text, View} from 'react-native'
-import {RouteNames} from '../../routers/routers';
+import {RouteNames} from '../../routers';
 import {userSelector} from "../../redux/reducers/login";
 
 

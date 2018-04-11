@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import Root from '../src/Root';
+import Root from '../src/app/Root';
 // Note: test renderer must be required after app-native.
 import renderer from 'react-test-renderer';
 

@@ -1,6 +1,8 @@
 'use strict';
 /** ---------------------------------------
- *  Bridge.js
+ *  Common module
+ *  ---------------
+ *  bridge.js
  ---------------------------------------**/
 
 import {DeviceEventEmitter, NativeEventEmitter, NativeModules, Platform,} from 'react-native';

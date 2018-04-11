@@ -4,7 +4,7 @@ import './vendors/prototype';
 // resources
 import Resources from './resources/resources';
 import Locales from './vendors/locales';
-import Configs from './vendors/configs'
+import Configs from './vendors/configs';
 // vendors
 import UUID from './vendors/uuid';
 import Logger from './vendors/logger';
@@ -14,6 +14,7 @@ import Http from './vendors/http';
 import Navigation from './vendors/navigation';
 import Bridge from './vendors/bridge';
 import Activity from './vendors/activity';
+import App from './vendors/app';
 
 // init bridge
 Bridge.listener("RNBridgeConfigs", data => {
@@ -39,4 +40,5 @@ global.Store = Store;
 global.Http = Http;
 global.Navigation = Navigation;
 global.Bridge = Bridge;
+global.App = App;
 global.Activity = Activity;

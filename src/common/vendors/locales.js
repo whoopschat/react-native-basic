@@ -1,6 +1,8 @@
 'use strict';
 /** --------------------------------------
- *  Locales.js
+ *  Common module
+ *  ---------------
+ *  locales.js
  -------------------------------------- **/
 
 const LocalesConfig = {

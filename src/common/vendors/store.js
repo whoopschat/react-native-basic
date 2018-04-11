@@ -1,12 +1,14 @@
 'use strict';
 /** ----------------------------------------
- *  Store.js
+ *  Common module
+ *  ---------------
+ *  store.js
  ---------------------------------------- **/
 
 import {connect} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import {createSelector} from 'reselect';
+import * as Reselect from 'reselect';
 
 const connectStore = (_component, _state = (state) => (state), _action) => {
   return connect(_state, _action)(_component)
@@ -37,7 +39,7 @@ const handleActionsProxy = (handlers, defaultState) => {
 };
 
 const createSelectorProxy = (...args) => {
-  return createSelector(...args)
+  return Reselect.createSelector(...args)
 };
 
 export default {
