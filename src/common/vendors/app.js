@@ -8,9 +8,6 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 
-import Navigation from './navigation';
-import Configs from './configs';
-
 const createApp = function (routes, reducers = {}) {
 
   const AppNavigator = Navigation.createStackNavigator(routes.hasOwnProperty('map') ? routes.map : {},

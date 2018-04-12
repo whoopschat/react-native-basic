@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native'
+import {RouteNames} from "../../routers";
 
 export default class NavigationScreen extends Activity {
 
@@ -29,7 +30,9 @@ export default class NavigationScreen extends Activity {
         <Text>Action : popToTop</Text>
         <Button
           onPress={() => {
-            this.pagePopToTop();
+            // this.pagePopToTop();
+            this.pagePopTo(RouteNames.Main)
+            this.pageLink('router://rn/center/11111111111?age=22222222222222222222222')
           }
           }
           title='POP TO TOP'

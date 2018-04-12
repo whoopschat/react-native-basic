@@ -49,6 +49,10 @@ export default class Activity extends React.Component {
     }
   }
 
+  pageLink(uri) {
+    Navigation.navigationDeepLink(uri)
+  }
+
   pagePush(name, params = {}, action) {
     if (this.props.navigation !== null
       && this.props.navigation.hasOwnProperty('push')) {
@@ -71,6 +75,10 @@ export default class Activity extends React.Component {
       const {pop} = this.props.navigation;
       pop(number);
     }
+  }
+
+  pagePopTo(name) {
+    Navigation.navigationPopTo(name)
   }
 
   pagePopToTop() {

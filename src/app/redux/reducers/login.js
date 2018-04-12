@@ -4,8 +4,6 @@
 /////// initialState
 ///////////////////////////////////////////////////
 
-import {RouteNames} from "../../routers";
-
 const initialState = {
   status: '点击登录',
   isSuccess: false,

@@ -5,22 +5,14 @@
  *  navigation.js
  ---------------------------------------- **/
 
-import {StackNavigator, TabNavigator} from 'react-navigation';
+import {StackNavigator, TabNavigator, withNavigation, withNavigationFocus} from 'react-navigation';
 
-class NavigatorProxy {
+class NavigationProxy {
 
   constructor(navigation, uriPrefix, router) {
     this.navigation = navigation;
     this.uriPrefix = uriPrefix;
     this.router = router;
-  }
-
-  dispatch(action) {
-    if (this.navigation !== null
-      && this.navigation.hasOwnProperty('dispatch')) {
-      const {dispatch} = this.navigation;
-      dispatch(action);
-    }
   }
 
   navigate(name, params = {}, action) {
@@ -40,8 +32,11 @@ class NavigatorProxy {
   }
 
   link(url) {
-    if (this.router != null
+    if (this.navigation !== null
+      && this.navigation.hasOwnProperty('dispatch')
+      && this.router != null
       && this.router.hasOwnProperty('getActionForPathAndParams')) {
+      const {dispatch} = this.navigation;
       const {getActionForPathAndParams} = this.router;
       const params = {};
       const delimiter = this.uriPrefix || '://';
@@ -66,7 +61,7 @@ class NavigatorProxy {
       }
       const action = getActionForPathAndParams(path, params);
       if (action) {
-        this.dispatch(action);
+        dispatch(action);
       }
     }
   }
@@ -82,9 +77,10 @@ class NavigatorProxy {
   popTo(name) {
     if (this.navigation !== null
       && this.navigation.hasOwnProperty('state')
+      && this.navigation.hasOwnProperty('pop')
       && this.navigation.state.hasOwnProperty('routes')) {
       try {
-        const {state} = this.navigation;
+        const {state, pop} = this.navigation;
         let totalRoutes = state.routes.length;
         let targetIndex = -1;
         try {
@@ -98,7 +94,7 @@ class NavigatorProxy {
         }
         if (targetIndex >= 0) {
           const n = totalRoutes - targetIndex;
-          this.pop(n);
+          pop(n);
         }
       } catch (e) {
       }
@@ -119,39 +115,72 @@ class NavigatorProxy {
 //////// Export
 /////////////////////////////////////////////////
 
-const createStackNavigator = (routeConfigMap, stackConfig = {}) => {
-  class AppStackNavigator extends StackNavigator(routeConfigMap, stackConfig) {
-    static navigator = new NavigatorProxy(null);
+// const navigators
+const navigators = [];
+
+const createStackNavigator = (routeConfigMap, config = {}) => {
+  const navigator = new NavigationProxy(null);
+
+  class AppStackNavigator extends StackNavigator(routeConfigMap, config) {
 
     render() {
       const superRender = super.render();
-      AppStackNavigator.navigator.navigation = this.props.navigation || this._navigation;
-      AppStackNavigator.navigator.uriPrefix = this.props.uriPrefix || '://';
+      navigator.navigation = this.props.navigation || this._navigation;
+      navigator.uriPrefix = this.props.uriPrefix || '://';
       return superRender;
     }
+
   }
 
-  AppStackNavigator.navigator.router = AppStackNavigator.router;
+  navigator.router = AppStackNavigator.router;
+  navigators.push(navigator);
   return AppStackNavigator;
 };
 
 const createTabNavigator = (routeConfigMap, config = {}) => {
+  const navigator = new NavigationProxy(null);
+
   class AppTabNavigator extends TabNavigator(routeConfigMap, config) {
-    static navigator = new NavigatorProxy(null);
 
     render() {
       const superRender = super.render();
-      AppTabNavigator.navigator.navigation = this.props.navigation || this._navigation;
-      AppTabNavigator.navigator.uriPrefix = this.props.uriPrefix || '://';
+      navigator.navigation = this.props.navigation || this._navigation;
+      navigator.uriPrefix = this.props.uriPrefix || '://';
       return superRender;
     }
+
   }
 
-  AppTabNavigator.navigator.router = AppTabNavigator.router;
+  navigator.router = AppTabNavigator.router;
+  navigators.push(navigator);
   return AppTabNavigator;
+};
+
+const navigationDeepLink = (uri) => {
+  navigators.forEach(navigator => {
+    navigator.link(uri);
+  });
+};
+
+const navigationPopTo = (name) => {
+  navigators.forEach(navigator => {
+    navigator.popTo(name);
+  });
+};
+
+const withNavigationProxy = (component) => {
+  return withNavigation(component);
+};
+
+const withNavigationFocusProxy = (component) => {
+  return withNavigationFocus(component);
 };
 
 export default {
   createStackNavigator,
-  createTabNavigator
+  createTabNavigator,
+  withNavigation: withNavigationProxy,
+  withNavigationFocus: withNavigationFocusProxy,
+  navigationDeepLink,
+  navigationPopTo
 }
