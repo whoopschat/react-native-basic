@@ -1,5 +1,5 @@
 # react-native-tape
-> An React-Native Client Basic
+> An React-Native Library
 
 ## Get Started
 
@@ -29,7 +29,7 @@
     - `common/`: base component, modules ,services, global
     - `res/`: resources, assets, configs, locales
     
-## Resources Manager Plugin
+## Assets Manager Plugin
 [React Assets Manager](https://github.com/whoopschat/react-assets-manager)
 
 The plug-in can automatically generate resources.js files from the res directory
