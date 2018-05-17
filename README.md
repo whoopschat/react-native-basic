@@ -1,4 +1,4 @@
-# React Native Basic
+# react-native-tape
 > An React-Native Client Basic
 
 ## Get Started

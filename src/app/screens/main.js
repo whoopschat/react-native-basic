@@ -1,7 +1,7 @@
 import HomeScreen from '../screens/home';
 import MeScreen from '../screens/me';
 
-export default Navigation.createTabNavigator({
+export default Tape.Navigation.createTabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {

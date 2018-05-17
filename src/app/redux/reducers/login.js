@@ -14,7 +14,7 @@ const initialState = {
 /////// Reducer
 ///////////////////////////////////////////////////
 
-export default Store.handleActions({
+export default Tape.Store.handleActions({
   LOGIN_IN_DOING: (state, action) => {
     return {
       ...state,
@@ -41,7 +41,7 @@ export default Store.handleActions({
 /////// Selector
 ///////////////////////////////////////////////////
 
-export const userSelector = Store.createSelector(
+export const userSelector = Tape.Store.createSelector(
   state => state.status,
   state => state.user,
   (status, user) => (JSON.stringify(user))

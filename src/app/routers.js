@@ -11,39 +11,41 @@ import CenterScreen from "./screens/examples/center";
 
 // RouteNames
 export const RouteNames = Object.freeze({
-  Main: 'Main',
-  Navigation: 'Navigation',
-  Center: 'Center',
+    Main: 'Main',
+    Navigation: 'Navigation',
+    Center: 'Center',
 });
 
 // routeMaps
 const routeMaps = {
-  [RouteNames.Main]: {
-    screen: MainScreen,
-    navigationOptions: {
-      header: null
+    [RouteNames.Main]: {
+        screen: MainScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    [RouteNames.Center]: {
+        screen: CenterScreen,
+        path: 'center/:name',
+        navigationOptions: {
+            header: null
+        }
+    },
+    [RouteNames.Navigation]: {
+        screen: NavigationScreen,
+        navigationOptions: {
+            header: null
+        }
     }
-  },
-  [RouteNames.Center]: {
-    screen: CenterScreen,
-    path: 'center/:name',
-    navigationOptions: {
-      header: null
-    }
-  },
-  [RouteNames.Navigation]: {
-    screen: NavigationScreen,
-    navigationOptions: {
-      header: null
-    }
-  }
 };
 
 const routeOptions = {
-  initialRouteName: RouteNames.Main,
+    initialRouteName: RouteNames.Main,
 };
 
 export default {
-  map: routeMaps,
-  options: routeOptions
+    routes: routeMaps,
+    options: routeOptions,
+    iosUriPrefix: 'router://',
+    androidUriPrefix: 'router://rn/'
 }

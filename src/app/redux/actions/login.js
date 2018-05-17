@@ -12,12 +12,12 @@ let user = {
 export function login() {
   console.log('登录方法');
   return dispatch => {
-    dispatch(Store.createAction(LOGIN_IN_DOING));
+    dispatch(Tape.Store.createAction(LOGIN_IN_DOING));
     // 模拟用户登录
     fetch('https://www.baidu.com/').then(res => {
-      dispatch(Store.createAction(LOGIN_IN_DONE, {user: user}));
+      dispatch(Tape.Store.createAction(LOGIN_IN_DONE, {user: user}));
     }).catch(e => {
-      dispatch(Store.createAction(LOGIN_IN_ERROR));
+      dispatch(Tape.Store.createAction(LOGIN_IN_ERROR));
     })
   }
 }
