@@ -1,5 +1,5 @@
-# react-native-tape
-> An React-Native Library
+# reactnative-tape
+> An React Native Library
 
 ## Get Started
 
